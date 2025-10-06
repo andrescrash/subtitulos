@@ -181,8 +181,7 @@
                 
                 <!-- Chrome内蔵翻訳選択時の注意書き -->
                 <div id="chromeTranslationNotice" style="font-size: 12px; color: #666; line-height: 1.3;">
-                    <span id="chromeTranslationNoticeText">※Chrome内蔵(高速)は，1時間程でエラーで止まります（原因調査中）．<br>現在は，仮対応として30分ごとに自動リロードされます</span>
-                    <span id="chromeTranslationTimer" style="font-weight: bold; color: #1976d2;">（xx:xx後にリロード）</span>
+                    <span id="chromeTranslationNoticeText">※Chrome内蔵(高速)は、Chrome 138以降で使用可能です</span>
                 </div>
             </div>
             <div id="modelDownloadArea" style="display: none; margin-top: 8px; padding: 10px; background: linear-gradient(135deg, #fff3cd 0%, #ffe8a1 100%); border-radius: 5px; border: 2px solid #ffc107;">
@@ -980,23 +979,7 @@ window.addEventListener('DOMContentLoaded', function() {
     }
     
     function setupMessageListener() {
-        window.addEventListener('message', function(event) {
-            if (event.data && event.data.type === 'chromeTranslationCountdown') {
-                const timerElement = document.getElementById('chromeTranslationTimer');
-                
-                if (timerElement) {
-                    const { remainingMinutes, remainingSeconds, totalSeconds } = event.data;
-                    
-                    if (totalSeconds > 0) {
-                        const minutes = String(remainingMinutes).padStart(2, '0');
-                        const seconds = String(remainingSeconds).padStart(2, '0');
-                        timerElement.textContent = `（${minutes}:${seconds}後にリロード）`;
-                    } else {
-                        timerElement.textContent = '（待機中）';
-                    }
-                }
-            }
-        }, false);
+        // Chrome翻訳タイマーメッセージリスナーを削除（バグ修正済み）
     }
     
     
