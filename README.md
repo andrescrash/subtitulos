@@ -1,3 +1,22 @@
+## 🌍 Versión en Español – Subtítulos en Vivo
+
+Este proyecto es una **traducción al español** del increíble trabajo original desarrollado por [Sayonari](https://x.com/sayonari/).  
+Todos los créditos y el mérito completo del desarrollo pertenecen a su autor original.  
+
+Los cambios realizados en este fork tienen como único objetivo:
+- Adaptar completamente la interfaz gráfica al **español neutro**.  
+- Evitar que el navegador (como Google Chrome) muestre el aviso de “página en japonés”.  
+- Mejorar la experiencia del usuario hispanohablante manteniendo intactas las funciones originales.  
+
+Puedes visitar el proyecto original aquí:  
+🔗 [jimakuChan (音声認識字幕ちゃん) – Proyecto original de Sayonari](https://sayonari.github.io/jimakuChan/)
+
+---
+
+✨ Esta versión llamada **Subtítulos en Vivo** busca hacer accesible esta maravillosa herramienta a toda la comunidad de habla hispana, respetando y reconociendo el trabajo del autor original.
+
+
+
 # jimakuChan (音声認識字幕ちゃん)
 
 リアルタイム音声認識・翻訳字幕アプリケーション  
