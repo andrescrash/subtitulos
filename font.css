@@ -74,3 +74,17 @@
     font-family: 'CP';
     src: url('./font/CP.otf') format('opentype');
 }
+
+@font-face {
+  font-family: 'Komika Axis';
+  src: url('./font/KomikaAxis.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Bangers';
+  src: url('./font/Bangers.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
