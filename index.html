@@ -29,7 +29,7 @@
     </script>
     <!-- END: Google tag (gtag.js) -->
 
-    <title>jimakuChan: 音声認識字幕ちゃん [CONFIG]</title>
+    <title>Subtítulos en Vivo</title>
 
     <style type="text/css">
         /* グローバルなbox-sizingリセット */
@@ -117,59 +117,59 @@
 <!-- <iframe src="" name="sample" width="100%" height="30%" id="asr_frame" onclick="toggleIframeHeight()"></iframe> -->
 <iframe src="" name="sample" width="100%" height="30%" id="asr_frame" onclick="toggleIframeHeight()" style="border: none;"></iframe>
 
-　上の画面をクリックすると設定画面が閉じ，もう一度押すと再度開きます．<BR>
+　Haz clic en la pantalla superior para ocultar/mostrar la ventana de configuración.<BR>
 <HR>
 
-<!-- # プリセット機能とAPIキー ################## -->
+<!-- # Preajustes機能とAPIキー ################## -->
 <div style="display: flex; gap: 10px; margin-bottom: 5px;">
-    <!-- 左側：設定プリセット -->
+    <!-- 左側：Preajustes de configuración -->
     <div style="width: 280px; background-color: #ffe0e6; padding: 8px 10px; border-radius: 5px;">
-        <div style="font-size: 14px; margin-bottom: 4px;">設定プリセット：</div>
+        <div style="font-size: 14px; margin-bottom: 4px;">Preajustes de configuración：</div>
         <select id="presetSelect" onchange="loadPreset()" style="width: 100%; margin-bottom: 4px;">
-            <option value="default">📋 選択してください</option>
-            <option value="gaming">🎮 ゲーム配信用</option>
-            <option value="meeting">💼 会議・打ち合わせ用</option>
-            <option value="language_learning">📚 語学学習用</option>
-            <option value="accessibility">♿ アクセシビリティ重視</option>
-            <option value="cute_streaming">🌸 かわいい配信用</option>
-            <option value="dark_theme">🌙 ダークテーマ</option>
-            <option value="rainbow">🌈 レインボー</option>
-            <option value="custom1">🔧 カスタム１</option>
-            <option value="custom2">🔧 カスタム２</option>
-            <option value="custom3">🔧 カスタム３</option>
+            <option value="default">📋 Selecciona</option>
+            <option value="gaming">🎮 Para transmisión de juegos</option>
+            <option value="meeting">💼 Para reuniones y consultas</option>
+            <option value="language_learning">📚 Para aprendizaje de idiomas</option>
+            <option value="accessibility">♿ Enfocado en accesibilidad</option>
+            <option value="cute_streaming">🌸 Para transmisiones lindas</option>
+            <option value="dark_theme">🌙 Tema oscuro</option>
+            <option value="rainbow">🌈 Arcoíris</option>
+            <option value="custom1">🔧 Personalizado 1</option>
+            <option value="custom2">🔧 Personalizado 2</option>
+            <option value="custom3">🔧 Personalizado 3</option>
         </select>
-        <small style="color: #666; font-size: 12px;">※ 選択すると設定が自動保存されます ✨</small>
+        <small style="color: #666; font-size: 12px;">※ La configuración se guarda automáticamente al seleccionar ✨</small>
     </div>
     
     <!-- 右側：APIキー関連 -->
     <div style="flex: 1; background-color: #e0e8ff; padding: 8px 10px; border-radius: 5px;">
         <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 3px;">
-            <span style="font-size: 14px;">翻訳用 Google API-KEY：</span>
+            <span style="font-size: 14px;">API-KEY de Google para traducción：</span>
             <input type="text" name="gas_key" id="gas_key" size="30" oninput="updateOptionValues();" style="height: 22px;" />
-            <a target="_blank" href="http://www.sayonari.com/trans_asr/index_asr.html" style="font-size: 11px;">[作成方法]</a>
+            <a target="_blank" href="http://www.sayonari.com/trans_asr/index_asr.html" style="font-size: 11px;">[Cómo crearlo]</a>
         </div>
         <div style="font-size: 13px;">
             <span id="apiModeDisplay">
-                翻訳回数：<span id="displayTransCount">0</span><span style="color: gray; font-size: 11px;">（無料上限5,000回）</span>
+                Contador de traducciones：<span id="displayTransCount">0</span><span style="color: gray; font-size: 11px;">（Límite gratuito: 5,000 veces）</span>
             </span>
-            　翻訳：<span id="translationStatus" style="font-weight: bold; color: #666;">待機中</span>
+            　Traducción：<span id="translationStatus" style="font-weight: bold; color: #666;">En espera</span>
         </div>
         <div id="chromeTranslationMode" style="display: none; margin-top: 5px; padding: 10px; background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%); border-radius: 5px;">
             <div style="margin-bottom: 8px;">
                 <div style="margin-bottom: 8px;">
                     <span id="chromeTranslationStatus" style="font-size: 14px; font-weight: bold; color: #1a5e3a;">
-                        🚀 高速翻訳対応Chromeで起動！
+                        🚀 ¡Iniciado en Chrome con traducción rápida compatible!
                     </span>
                 </div>
                 
                 <!-- 翻訳方法選択スイッチ -->
                 <div style="margin-bottom: 8px;">
                     <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
-                        <span style="font-size: 14px; color: #1a5e3a; font-weight: bold;">翻訳方法：</span>
+                        <span style="font-size: 14px; color: #1a5e3a; font-weight: bold;">Método de traducción：</span>
                         <label style="display: flex; align-items: center; gap: 4px; cursor: pointer; font-size: 14px; color: #1a5e3a;">
                             <input type="radio" name="translationMethod" value="chrome" id="translationMethodChrome" 
                                    onchange="switchTranslationMethod()" checked>
-                            Chrome内蔵(高速)
+                            Integrado en Chrome (rápido)
                         </label>
                         <label style="display: flex; align-items: center; gap: 4px; cursor: pointer; font-size: 14px; color: #1a5e3a;">
                             <input type="radio" name="translationMethod" value="gas" id="translationMethodGas" 
@@ -181,16 +181,16 @@
                 
                 <!-- Chrome内蔵翻訳選択時の注意書き -->
                 <div id="chromeTranslationNotice" style="font-size: 12px; color: #666; line-height: 1.3;">
-                    <span id="chromeTranslationNoticeText">※Chrome内蔵(高速)は、Chrome 138以降で使用可能です</span>
+                    <span id="chromeTranslationNoticeText">※El método integrado en Chrome (rápido) está disponible desde Chrome 138 en adelante</span>
                 </div>
             </div>
             <div id="modelDownloadArea" style="display: none; margin-top: 8px; padding: 10px; background: linear-gradient(135deg, #fff3cd 0%, #ffe8a1 100%); border-radius: 5px; border: 2px solid #ffc107;">
                 <div style="display: flex; align-items: center; gap: 10px;">
                     <button id="preloadModelBtn" onclick="preloadTranslationModel()" style="padding: 8px 16px; background: #ff6b6b; color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 14px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
-                        📥 モデルをダウンロード
+                        📥 Descargar modelo
                     </button>
                     <span id="modelQueueStatus" style="padding: 4px 8px; background: rgba(255, 255, 255, 0.8); border-radius: 4px; font-size: 12px; color: #666; font-weight: bold; display: none;">
-                        📦 残り0個
+                        📦 Restantes: 0
                     </span>
                     <span id="modelStatusText" style="font-size: 13px; color: #333; font-weight: bold;"></span>
                 </div>
@@ -207,14 +207,14 @@
 <table style="border-collapse: separate; border-spacing: 0px;">
 <tr>
     <td></td>
-    <td style="text-align: center; width: 50px;">文字色</td>
-    <td style="text-align: center; width: 50px;">フチ色</td>
-    <td style="text-align: center; width: 120px;">サイズ</td>
-    <td style="text-align: center; width: 120px;">ウェイト</td>
-    <td style="text-align: center; width: 120px;">縁取り</td>
+    <td style="text-align: center; width: 50px;">Color del texto</td>
+    <td style="text-align: center; width: 50px;">Color del borde</td>
+    <td style="text-align: center; width: 120px;">Tamaño</td>
+    <td style="text-align: center; width: 120px;">Grosor (bold)</td>
+    <td style="text-align: center; width: 120px;">Ancho del contorno</td>
 </tr>
 <tr>
-    <td style="width: 60px;">認識　：</td>
+    <td style="width: 60px;">Reconocimiento:</td>
     <td style="text-align: center;">
         <input id="color1" type="color" value="#ffffff" oninput="changeTextColor('fg',this.value,1); updateOptionValues(only_url=true)" />
     </td>
@@ -235,7 +235,7 @@
     </td>
 </tr>
 <tr>
-    <td>翻訳１：</td>
+    <td>Traducción 1:</td>
     <td style="text-align: center;">
         <input id="color2" type="color" value="#ffffff" oninput="changeTextColor('fg',this.value,2); updateOptionValues(only_url=true)" />
     </td>
@@ -256,7 +256,7 @@
     </td>
 </tr>
 <tr>
-    <td>翻訳２：</td>
+    <td>Traducción 2:</td>
     <td style="text-align: center;">
         <input id="color3" type="color" value="#ffffff" oninput="changeTextColor('fg',this.value,3); updateOptionValues(only_url=true)" />
     </td>
@@ -277,7 +277,7 @@
     </td>
 </tr>
 <tr>
-    <td>翻訳３：</td>
+    <td>Traducción 3:</td>
     <td style="text-align: center;">
         <input id="color4" type="color" value="#ffffff" oninput="changeTextColor('fg',this.value,4); updateOptionValues(only_url=true)" />
     </td>
@@ -299,275 +299,283 @@
 </tr>
 </table>
 
-背景色：<input id="bgcolor" type="color" value="#00ff00" oninput="document.getElementById('asr_frame').contentWindow.document.bgColor=this.value; changeTextColor('imb',this.value,1); updateOptionValues(only_url=true)" />
+Color de fondo:<input id="bgcolor" type="color" value="#00ff00" oninput="document.getElementById('asr_frame').contentWindow.document.bgColor=this.value; changeTextColor('imb',this.value,1); updateOptionValues(only_url=true)" />
 
 <HR>
 
 <!-- # 言語選択設定 ######################### -->
-音声認識言語　：
+Idioma de reconocimiento:
 <select id="recog" onchange="updateOptionValues(only_url=false); checkAllTranslationModels();">
-    <option value="ja" selected>日本語</option>
-    <option value="en-US">英語</option>
-    <option value="ko">韓国語</option>
-    <option value="zh-CN">中国語</option>
-    <option value="zh-TW">台湾語</option>
-    <option value="zh-HK">香港語</option>
-    <option value="fr-FR">フランス語</option>
-    <option value="it-IT">イタリア語</option>
-    <option value="de-DE">ドイツ語</option>
-    <option value="tr-TR">トルコ語</option>
-    <option value="sv-SE">スウェーデン語</option>
-    <option value="pl-PL">ポーランド語</option>
-    <option value="uk-UA">ウクライナ語</option>
-    <option value="ru-RU">ロシア語</option>
-    <option value="es-ES">スペイン語</option>
-    <option value="pt-PT">ポルトガル語</option>
-    <option value="nl-NL">オランダ語</option>
-    <option value="id-ID">インドネシア語</option>
-    <option value="vi-VN">ベトナム語</option>
-    <option value="th-TH">タイ語</option>
-    <option value="ar-SA">アラビア語</option>
-    <option value="el-GR">ギリシャ語</option>
+    <option value="ja" selected>Japonés</option>
+    <option value="en-US">Inglés</option>
+    <option value="ko">Coreano</option>
+    <option value="zh-CN">Chino (simplificado)</option>
+    <option value="zh-TW">Chino (tradicional)</option>
+    <option value="zh-HK">Cantonés (Hong Kong)</option>
+    <option value="fr-FR">Francés</option>
+    <option value="it-IT">Italiano</option>
+    <option value="de-DE">Alemán</option>
+    <option value="tr-TR">Turco</option>
+    <option value="sv-SE">Sueco</option>
+    <option value="pl-PL">Polaco</option>
+    <option value="uk-UA">Ucraniano</option>
+    <option value="ru-RU">Ruso</option>
+    <option value="es-ES">Español</option>
+    <option value="pt-PT">Portugués</option>
+    <option value="nl-NL">Holandés</option>
+    <option value="id-ID">Indonesio</option>
+    <option value="vi-VN">Vietnamita</option>
+    <option value="th-TH">Tailandés</option>
+    <option value="ar-SA">Árabe</option>
+    <option value="el-GR">Griego</option>
 </select>　　
 
-フォント　：
+Fuente　：
 <select name="speech_text_font_selector" id="speech_text_font_selector" onchange="applySelectedFont(this, 'speech_text'); selectFont(); updateOptionValues();">
-    <option value="direct">[PC内フォント]</option>
+    <option value="direct">[Fuente en PC]</option>
     <option value="M PLUS\\ 1p">M PLUS 1p</option>
     <option value="M PLUS Rounded\\ 1c" selected>M PLUS Rounded 1c</option>
-    <option value="Mamelon">マメロン</option>
-    <option value="YasashisaB">やさしさB</option>
-    <option value="HuiFont29">ふい字</option>
+	<option value="Komika Axis">Komika Axis</option>
+	<option value="Bangers">Bangers</option>
+    <option value="Mamelon">Mamelon</option>
+    <option value="YasashisaB">YasashisaB</option>
+    <option value="HuiFont29">HuiFont29</option>
     <option value="Hachi Maru Pop">Hachi Maru Pop</option>
-    <option value="MkPOP">851マカポップ</option>
-    <option value="bananaslipplus">バナナスリップplus</option>
-    <option value="katyou">花鳥風月</option>
-    <option value="TanukiMagic">たぬき油性マジック</option>
-    <option value="hakidame">吐き溜</option>
-    <option value="umeboshi">梅干し</option>
-    <option value="Jiyucho">じゆうちょう</option>
+    <option value="MkPOP">851 Makapop</option>
+    <option value="bananaslipplus">Banana Slip Plus</option>
+    <option value="katyou">Katyou</option>
+    <option value="TanukiMagic">Tanuki Magic</option>
+    <option value="hakidame">Hakidame</option>
+    <option value="umeboshi">Umeboshi</option>
+    <option value="Jiyucho">Jiyucho</option>
     <option value="HitmoR">Hitmo</option>
-    <option value="nishikiteki">にしき的</option>
+    <option value="nishikiteki">Nishikiteki</option>
     <option value="Yusei Magic">Yusei Magic</option>
-    <option value="Nikumaru">にくまる</option>
-    <option value="KTEGAKI">kawaii手書き</option>
+    <option value="Nikumaru">Nikumaru</option>
+    <option value="KTEGAKI">Kawaii Handwriting</option>
     <option value="JKGL">JK Gothic L</option>
     <option value="Reggae One">Reggae One</option>
-    <option value="OhisamaFont">おひさま</option>
-    <option value="nukamiso">ぬかみそ</option>
-    <option value="genkai">源界明朝</option>
-    <option value="CP">チェックポイント</option>
+    <option value="OhisamaFont">Ohisama</option>
+    <option value="nukamiso">Nukamiso</option>
+    <option value="genkai">Genkai Mincho</option>
+    <option value="CP">Check Point</option>
     <option value="Noto Sans JP">Noto Sans JP</option>
-    <option value="Sawarabi Gothic">さわらびゴシック</option>
-    <option value="Nico Moji">ニコモジ</option>
+    <option value="Sawarabi Gothic">Sawarabi Gothic</option>
+    <option value="Nico Moji">Nico Moji</option>
 </select>　
-PC内フォント：<select id="speech_text_system_font" onchange="applySystemFont(this.value, 'speech_text'); updateOptionValues();"></select>
-<input type="text" id="speech_text_direct_font" placeholder="フォント名を入力" style="width: 200px; margin-left: 10px;" disabled oninput="applyDirectFont(this.value, 'speech_text'); updateOptionValues();">
+Fuente en PC：<select id="speech_text_system_font" onchange="applySystemFont(this.value, 'speech_text'); updateOptionValues();"></select>
+<input type="text" id="speech_text_direct_font" placeholder="Ingresa nombre de fuente" style="width: 200px; margin-left: 10px;" disabled oninput="applyDirectFont(this.value, 'speech_text'); updateOptionValues();">
 <span id="font_api_status" style="font-size: 12px; margin-left: 10px;"></span><br>
 
-翻訳言語（１）：
+Idioma de traducción (1):
 <select id="trans" onchange="updateOptionValues(only_url=false, transNum=1); checkTranslationModel(1, event);">
-    <option value="none" selected>なし</option>
-    <option value="ja">日本語</option>
-    <option value="en">英語</option>
-    <option value="ko">韓国語</option>
-    <option value="zh-CN">中国語</option>
-    <option value="zh-TW">台湾語</option>
-    <option value="zh-HK">香港語</option>
-    <option value="fr">フランス語</option>
-    <option value="it">イタリア語</option>
-    <option value="de">ドイツ語</option>
-    <option value="tr">トルコ語</option>
-    <option value="sv">スウェーデン語</option>
-    <option value="pl">ポーランド語</option>
-    <option value="uk">ウクライナ語</option>
-    <option value="ru">ロシア語</option>
-    <option value="es">スペイン語</option>
-    <option value="pt">ポルトガル語</option>
-    <option value="nl">オランダ語</option>
-    <option value="id">インドネシア語</option>
-    <option value="vi">ベトナム語</option>
-    <option value="th">タイ語</option>
-    <option value="ar">アラビア語</option>
-    <option value="so">ソマリ語</option>
-    <option value="el">ギリシャ語</option>
+    <option value="none" selected>Ninguno</option>
+    <option value="ja">Japonés</option>
+    <option value="en">Inglés</option>
+    <option value="ko">Coreano</option>
+    <option value="zh-CN">Chino (simplificado)</option>
+    <option value="zh-TW">Chino (tradicional)</option>
+    <option value="zh-HK">Cantonés (Hong Kong)</option>
+    <option value="fr">Francés</option>
+    <option value="it">Italiano</option>
+    <option value="de">Alemán</option>
+    <option value="tr">Turco</option>
+    <option value="sv">Sueco</option>
+    <option value="pl">Polaco</option>
+    <option value="uk">Ucraniano</option>
+    <option value="ru">Ruso</option>
+    <option value="es">Español</option>
+    <option value="pt">Portugués</option>
+    <option value="nl">Holandés</option>
+    <option value="id">Indonesio</option>
+    <option value="vi">Vietnamita</option>
+    <option value="th">Tailandés</option>
+    <option value="ar">Árabe</option>
+    <option value="so">Somalí</option>
+    <option value="el">Griego</option>
 </select>　　
 
-フォント　：
+Fuente　：
 <select name="trans_text_font_selector" id="trans_text_font_selector" onchange="applySelectedFont(this, 'trans_text'); selectFont(); updateOptionValues();">
-    <option value="direct">[PC内フォント]</option>
+    <option value="direct">[Fuente en PC]</option>
     <option value="M PLUS\\ 1p">M PLUS 1p</option>
     <option value="M PLUS Rounded\\ 1c" selected>M PLUS Rounded 1c</option>
-    <option value="Mamelon">マメロン</option>
-    <option value="YasashisaB">やさしさB</option>
-    <option value="HuiFont29">ふい字</option>
+	<option value="Komika Axis">Komika Axis</option>
+	<option value="Bangers">Bangers</option>
+    <option value="Mamelon">Mamelon</option>
+    <option value="YasashisaB">YasashisaB</option>
+    <option value="HuiFont29">HuiFont29</option>
     <option value="Hachi Maru Pop">Hachi Maru Pop</option>
-    <option value="MkPOP">851マカポップ</option>
-    <option value="bananaslipplus">バナナスリップplus</option>
-    <option value="katyou">花鳥風月</option>
-    <option value="TanukiMagic">たぬき油性マジック</option>
-    <option value="hakidame">吐き溜</option>
-    <option value="umeboshi">梅干し</option>
-    <option value="Jiyucho">じゆうちょう</option>
+    <option value="MkPOP">851 Makapop</option>
+    <option value="bananaslipplus">Banana Slip Plus</option>
+    <option value="katyou">Katyou</option>
+    <option value="TanukiMagic">Tanuki Magic</option>
+    <option value="hakidame">Hakidame</option>
+    <option value="umeboshi">Umeboshi</option>
+    <option value="Jiyucho">Jiyucho</option>
     <option value="HitmoR">Hitmo</option>
-    <option value="nishikiteki">にしき的</option>
+    <option value="nishikiteki">Nishikiteki</option>
     <option value="Yusei Magic">Yusei Magic</option>
-    <option value="Nikumaru">にくまる</option>
-    <option value="KTEGAKI">kawaii手書き</option>
+    <option value="Nikumaru">Nikumaru</option>
+    <option value="KTEGAKI">Kawaii Handwriting</option>
     <option value="JKGL">JK Gothic L</option>
     <option value="Reggae One">Reggae One</option>
-    <option value="OhisamaFont">おひさま</option>
-    <option value="nukamiso">ぬかみそ</option>
-    <option value="genkai">源界明朝</option>
-    <option value="CP">チェックポイント</option>
+    <option value="OhisamaFont">Ohisama</option>
+    <option value="nukamiso">Nukamiso</option>
+    <option value="genkai">Genkai Mincho</option>
+    <option value="CP">Check Point</option>
     <option value="Noto Sans JP">Noto Sans JP</option>
-    <option value="Sawarabi Gothic">さわらびゴシック</option>
-    <option value="Nico Moji">ニコモジ</option>
+    <option value="Sawarabi Gothic">Sawarabi Gothic</option>
+    <option value="Nico Moji">Nico Moji</option>
 </select>　
-PC内フォント：<select id="trans_text_system_font" onchange="applySystemFont(this.value, 'trans_text'); updateOptionValues();"></select>
-<input type="text" id="trans_text_direct_font" placeholder="フォント名を入力" style="width: 200px; margin-left: 10px;" disabled oninput="applyDirectFont(this.value, 'trans_text'); updateOptionValues();"><br>
+Fuente en PC：<select id="trans_text_system_font" onchange="applySystemFont(this.value, 'trans_text'); updateOptionValues();"></select>
+<input type="text" id="trans_text_direct_font" placeholder="Ingresa nombre de fuente" style="width: 200px; margin-left: 10px;" disabled oninput="applyDirectFont(this.value, 'trans_text'); updateOptionValues();"><br>
 
-翻訳言語（２）：
+Idioma de traducción (2):
 <select id="trans2" onchange="updateOptionValues(only_url=false, transNum=2); checkTranslationModel(2, event);">
-    <option value="none" selected>なし</option>
-    <option value="ja">日本語</option>
-    <option value="en">英語</option>
-    <option value="ko">韓国語</option>
-    <option value="zh-CN">中国語</option>
-    <option value="zh-TW">台湾語</option>
-    <option value="zh-HK">香港語</option>
-    <option value="fr">フランス語</option>
-    <option value="it">イタリア語</option>
-    <option value="de">ドイツ語</option>
-    <option value="tr">トルコ語</option>
-    <option value="sv">スウェーデン語</option>
-    <option value="pl">ポーランド語</option>
-    <option value="uk">ウクライナ語</option>
-    <option value="ru">ロシア語</option>
-    <option value="es">スペイン語</option>
-    <option value="pt">ポルトガル語</option>
-    <option value="nl">オランダ語</option>
-    <option value="id">インドネシア語</option>
-    <option value="vi">ベトナム語</option>
-    <option value="th">タイ語</option>
-    <option value="ar">アラビア語</option>
-    <option value="so">ソマリ語</option>
-    <option value="el">ギリシャ語</option>
+    <option value="none" selected>Ninguno</option>
+    <option value="ja">Japonés</option>
+    <option value="en">Inglés</option>
+    <option value="ko">Coreano</option>
+    <option value="zh-CN">Chino (simplificado)</option>
+    <option value="zh-TW">Chino (tradicional)</option>
+    <option value="zh-HK">Cantonés (Hong Kong)</option>
+    <option value="fr">Francés</option>
+    <option value="it">Italiano</option>
+    <option value="de">Alemán</option>
+    <option value="tr">Turco</option>
+    <option value="sv">Sueco</option>
+    <option value="pl">Polaco</option>
+    <option value="uk">Ucraniano</option>
+    <option value="ru">Ruso</option>
+    <option value="es">Español</option>
+    <option value="pt">Portugués</option>
+    <option value="nl">Holandés</option>
+    <option value="id">Indonesio</option>
+    <option value="vi">Vietnamita</option>
+    <option value="th">Tailandés</option>
+    <option value="ar">Árabe</option>
+    <option value="so">Somalí</option>
+    <option value="el">Griego</option>
 </select>　　
 
-フォント　：
+Fuente　：
 <select name="trans_text2_font_selector" id="trans_text2_font_selector" onchange="applySelectedFont(this, 'trans_text2'); selectFont(); updateOptionValues();">
-    <option value="direct">[PC内フォント]</option>
+    <option value="direct">[Fuente en PC]</option>
     <option value="M PLUS\\ 1p">M PLUS 1p</option>
     <option value="M PLUS Rounded\\ 1c" selected>M PLUS Rounded 1c</option>
-    <option value="Mamelon">マメロン</option>
-    <option value="YasashisaB">やさしさB</option>
-    <option value="HuiFont29">ふい字</option>
+	<option value="Komika Axis">Komika Axis</option>
+	<option value="Bangers">Bangers</option>
+    <option value="Mamelon">Mamelon</option>
+    <option value="YasashisaB">YasashisaB</option>
+    <option value="HuiFont29">HuiFont29</option>
     <option value="Hachi Maru Pop">Hachi Maru Pop</option>
-    <option value="MkPOP">851マカポップ</option>
-    <option value="bananaslipplus">バナナスリップplus</option>
-    <option value="katyou">花鳥風月</option>
-    <option value="TanukiMagic">たぬき油性マジック</option>
-    <option value="hakidame">吐き溜</option>
-    <option value="umeboshi">梅干し</option>
-    <option value="Jiyucho">じゆうちょう</option>
+    <option value="MkPOP">851 Makapop</option>
+    <option value="bananaslipplus">Banana Slip Plus</option>
+    <option value="katyou">Katyou</option>
+    <option value="TanukiMagic">Tanuki Magic</option>
+    <option value="hakidame">Hakidame</option>
+    <option value="umeboshi">Umeboshi</option>
+    <option value="Jiyucho">Jiyucho</option>
     <option value="HitmoR">Hitmo</option>
-    <option value="nishikiteki">にしき的</option>
+    <option value="nishikiteki">Nishikiteki</option>
     <option value="Yusei Magic">Yusei Magic</option>
-    <option value="Nikumaru">にくまる</option>
-    <option value="KTEGAKI">kawaii手書き</option>
+    <option value="Nikumaru">Nikumaru</option>
+    <option value="KTEGAKI">Kawaii Handwriting</option>
     <option value="JKGL">JK Gothic L</option>
     <option value="Reggae One">Reggae One</option>
-    <option value="OhisamaFont">おひさま</option>
-    <option value="nukamiso">ぬかみそ</option>
-    <option value="genkai">源界明朝</option>
-    <option value="CP">チェックポイント</option>
+    <option value="OhisamaFont">Ohisama</option>
+    <option value="nukamiso">Nukamiso</option>
+    <option value="genkai">Genkai Mincho</option>
+    <option value="CP">Check Point</option>
     <option value="Noto Sans JP">Noto Sans JP</option>
-    <option value="Sawarabi Gothic">さわらびゴシック</option>
-    <option value="Nico Moji">ニコモジ</option>
+    <option value="Sawarabi Gothic">Sawarabi Gothic</option>
+    <option value="Nico Moji">Nico Moji</option>
 </select>　
-PC内フォント：<select id="trans_text2_system_font" onchange="applySystemFont(this.value, 'trans_text2'); updateOptionValues();"></select>
-<input type="text" id="trans_text2_direct_font" placeholder="フォント名を入力" style="width: 200px; margin-left: 10px;" disabled oninput="applyDirectFont(this.value, 'trans_text2'); updateOptionValues();"><br>
+Fuente en PC：<select id="trans_text2_system_font" onchange="applySystemFont(this.value, 'trans_text2'); updateOptionValues();"></select>
+<input type="text" id="trans_text2_direct_font" placeholder="Ingresa nombre de fuente" style="width: 200px; margin-left: 10px;" disabled oninput="applyDirectFont(this.value, 'trans_text2'); updateOptionValues();"><br>
 
-翻訳言語（３）：
+Idioma de traducción (3):
 <select id="trans3" onchange="updateOptionValues(only_url=false, transNum=3); checkTranslationModel(3, event);">
-    <option value="none" selected>なし</option>
-    <option value="ja">日本語</option>
-    <option value="en">英語</option>
-    <option value="ko">韓国語</option>
-    <option value="zh-CN">中国語</option>
-    <option value="zh-TW">台湾語</option>
-    <option value="zh-HK">香港語</option>
-    <option value="fr">フランス語</option>
-    <option value="it">イタリア語</option>
-    <option value="de">ドイツ語</option>
-    <option value="tr">トルコ語</option>
-    <option value="sv">スウェーデン語</option>
-    <option value="pl">ポーランド語</option>
-    <option value="uk">ウクライナ語</option>
-    <option value="ru">ロシア語</option>
-    <option value="es">スペイン語</option>
-    <option value="pt">ポルトガル語</option>
-    <option value="nl">オランダ語</option>
-    <option value="id">インドネシア語</option>
-    <option value="vi">ベトナム語</option>
-    <option value="th">タイ語</option>
-    <option value="ar">アラビア語</option>
-    <option value="so">ソマリ語</option>
-    <option value="el">ギリシャ語</option>
+    <option value="none" selected>Ninguno</option>
+    <option value="ja">Japonés</option>
+    <option value="en">Inglés</option>
+    <option value="ko">Coreano</option>
+    <option value="zh-CN">Chino (simplificado)</option>
+    <option value="zh-TW">Chino (tradicional)</option>
+    <option value="zh-HK">Cantonés (Hong Kong)</option>
+    <option value="fr">Francés</option>
+    <option value="it">Italiano</option>
+    <option value="de">Alemán</option>
+    <option value="tr">Turco</option>
+    <option value="sv">Sueco</option>
+    <option value="pl">Polaco</option>
+    <option value="uk">Ucraniano</option>
+    <option value="ru">Ruso</option>
+    <option value="es">Español</option>
+    <option value="pt">Portugués</option>
+    <option value="nl">Holandés</option>
+    <option value="id">Indonesio</option>
+    <option value="vi">Vietnamita</option>
+    <option value="th">Tailandés</option>
+    <option value="ar">Árabe</option>
+    <option value="so">Somalí</option>
+    <option value="el">Griego</option>
 </select>　　
 
-フォント　：
+Fuente　：
 <select name="trans_text3_font_selector" id="trans_text3_font_selector" onchange="applySelectedFont(this, 'trans_text3'); selectFont(); updateOptionValues();">
-    <option value="direct">[PC内フォント]</option>
+    <option value="direct">[Fuente en PC]</option>
     <option value="M PLUS\\ 1p">M PLUS 1p</option>
     <option value="M PLUS Rounded\\ 1c" selected>M PLUS Rounded 1c</option>
-    <option value="Mamelon">マメロン</option>
-    <option value="YasashisaB">やさしさB</option>
-    <option value="HuiFont29">ふい字</option>
+	<option value="Komika Axis">Komika Axis</option>
+	<option value="Bangers">Bangers</option>
+    <option value="Mamelon">Mamelon</option>
+    <option value="YasashisaB">YasashisaB</option>
+    <option value="HuiFont29">HuiFont29</option>
     <option value="Hachi Maru Pop">Hachi Maru Pop</option>
-    <option value="MkPOP">851マカポップ</option>
-    <option value="bananaslipplus">バナナスリップplus</option>
-    <option value="katyou">花鳥風月</option>
-    <option value="TanukiMagic">たぬき油性マジック</option>
-    <option value="hakidame">吐き溜</option>
-    <option value="umeboshi">梅干し</option>
-    <option value="Jiyucho">じゆうちょう</option>
+    <option value="MkPOP">851 Makapop</option>
+    <option value="bananaslipplus">Banana Slip Plus</option>
+    <option value="katyou">Katyou</option>
+    <option value="TanukiMagic">Tanuki Magic</option>
+    <option value="hakidame">Hakidame</option>
+    <option value="umeboshi">Umeboshi</option>
+    <option value="Jiyucho">Jiyucho</option>
     <option value="HitmoR">Hitmo</option>
-    <option value="nishikiteki">にしき的</option>
+    <option value="nishikiteki">Nishikiteki</option>
     <option value="Yusei Magic">Yusei Magic</option>
-    <option value="Nikumaru">にくまる</option>
-    <option value="KTEGAKI">kawaii手書き</option>
+    <option value="Nikumaru">Nikumaru</option>
+    <option value="KTEGAKI">Kawaii Handwriting</option>
     <option value="JKGL">JK Gothic L</option>
     <option value="Reggae One">Reggae One</option>
-    <option value="OhisamaFont">おひさま</option>
-    <option value="nukamiso">ぬかみそ</option>
-    <option value="genkai">源界明朝</option>
-    <option value="CP">チェックポイント</option>
+    <option value="OhisamaFont">Ohisama</option>
+    <option value="nukamiso">Nukamiso</option>
+    <option value="genkai">Genkai Mincho</option>
+    <option value="CP">Check Point</option>
     <option value="Noto Sans JP">Noto Sans JP</option>
-    <option value="Sawarabi Gothic">さわらびゴシック</option>
-    <option value="Nico Moji">ニコモジ</option>
+    <option value="Sawarabi Gothic">Sawarabi Gothic</option>
+    <option value="Nico Moji">Nico Moji</option>
 </select>　
-PC内フォント：<select id="trans_text3_system_font" onchange="applySystemFont(this.value, 'trans_text3'); updateOptionValues();"></select>
-<input type="text" id="trans_text3_direct_font" placeholder="フォント名を入力" style="width: 200px; margin-left: 10px;" disabled oninput="applyDirectFont(this.value, 'trans_text3'); updateOptionValues();"><br>
+Fuente en PC：<select id="trans_text3_system_font" onchange="applySystemFont(this.value, 'trans_text3'); updateOptionValues();"></select>
+<input type="text" id="trans_text3_direct_font" placeholder="Ingresa nombre de fuente" style="width: 200px; margin-left: 10px;" disabled oninput="applyDirectFont(this.value, 'trans_text3'); updateOptionValues();"><br>
 
 <HR>
 <!-- # 行間調整 ######################### -->
 <div style="background-color: #f0f0f0; padding: 8px; border-radius: 5px; margin: 5px 0;">
-    <strong>行間：</strong>
-    認識→翻訳１
+    <strong>Espaciado entre líneas：</strong>
+    Reconocimiento→Traducción 1
     <input type="range" id="line_spacing_1" min="0" max="50" value="0" 
            oninput="document.getElementById('line_spacing_1_value').textContent = this.value + 'px'; updateLineSpacing('speech_text', this.value); updateOptionValues();"
            style="width: 80px; vertical-align: middle;">
     <span id="line_spacing_1_value" style="display: inline-block; width: 35px; text-align: right;">0px</span>
     　
-    翻訳１→２
+    Traducción 1→2
     <input type="range" id="line_spacing_2" min="0" max="50" value="0" 
            oninput="document.getElementById('line_spacing_2_value').textContent = this.value + 'px'; updateLineSpacing('trans_text', this.value); updateOptionValues();"
            style="width: 80px; vertical-align: middle;">
     <span id="line_spacing_2_value" style="display: inline-block; width: 35px; text-align: right;">0px</span>
     　
-    翻訳２→３
+    Traducción 2→3
     <input type="range" id="line_spacing_3" min="0" max="50" value="0" 
            oninput="document.getElementById('line_spacing_3_value').textContent = this.value + 'px'; updateLineSpacing('trans_text2', this.value); updateOptionValues();"
            style="width: 80px; vertical-align: middle;">
@@ -576,30 +584,30 @@ PC内フォント：<select id="trans_text3_system_font" onchange="applySystemFo
 
 <HR>
 <!-- # テキストの揃え ######################### -->
-テキストの位置：　
-左右：
+Alineación del texto:　
+Horizontal:
 <select id="textAlign" onchange="updateOptionValues()">
-    <option value="left">左寄せ</option>
-    <option value="center" selected>中央寄せ</option>
-    <option value="right">右寄せ</option>
+    <option value="left">Alinear a la izquierda</option>
+    <option value="center" selected>Centrar</option>
+    <option value="right">Alinear a la derecha</option>
 </select>
 
-　上下：
+　Vertical:
 <select id="v_align" onchange="updateOptionValues()">
-    <option value="top" selected>上</option>
-    <option value="bottom">下</option>
+    <option value="top" selected>Arriba</option>
+    <option value="bottom">Abajo</option>
 </select><BR>
 
 <!-- # テキストの改行 ######################### -->
-テキストの改行：
+Saltos de línea del texto:
 <select id="whiteSpace" onchange="updateOptionValues()">
-    <option value="nowrap">改行しない</option>
-    <option value="" selected>画面端で改行</option>
+    <option value="nowrap">Sin saltos de línea</option>
+    <option value="" selected>Ajustar al ancho de pantalla</option>
 </select><BR>
 <HR>
 
 
-<!-- 音量表示機能は削除されました（音声認識デバイスとの不一致によるユーザー混乱防止のため） -->
+<!-- 音量Mostrar機能は削除されました（音声認識デバイスとの不一致によるユーザー混乱防止のため） -->
 
 
 
@@ -609,60 +617,60 @@ PC内フォント：<select id="trans_text3_system_font" onchange="applySystemFo
 
 <HR>
 
-<!-- # テキスト表示を●秒後に消す ######################### -->
-何ミリ秒後に文を消す？　　　：　
-<input type="text" name="timer" id="timer" size="10" oninput="updateOptionValues();" />ミリ秒　
+<!-- # テキストMostrarを●秒後に消す ######################### -->
+¿Después de cuántos milisegundos eliminar la oración?　　　：　
+<input type="text" name="timer" id="timer" size="10" oninput="updateOptionValues();" />milisegundos　
 <span style="display: inline-block; vertical-align: middle;">
     <!-- 音声認識用タイマーバー（左） -->
     <div id="speechTimerProgressContainer" style="display: inline-block; width: 140px; height: 26px; background: linear-gradient(135deg, #fff5f5 0%, #ffd0cc 100%); border: 2px solid #cc8888; border-radius: 13px; margin-left: 10px; position: relative; overflow: hidden; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);">
         <div id="speechTimerProgressBar" style="height: 100%; background: linear-gradient(90deg, #FF6B6B 0%, #FFA07A 50%, #FFE4E1 100%); width: 0%; transition: width 0.1s linear; border-radius: 11px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);"></div>
-        <div id="speechTimerProgressText" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 13px; font-weight: bold; color: #333; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); letter-spacing: 0.5px;">🎤待機</div>
+        <div id="speechTimerProgressText" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 13px; font-weight: bold; color: #333; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); letter-spacing: 0.5px;">🎤En espera</div>
     </div>
     <!-- 翻訳用タイマーバー（右） -->
     <div id="transTimerProgressContainer" style="display: inline-block; width: 140px; height: 26px; background: linear-gradient(135deg, #f0f8ff 0%, #cce7ff 100%); border: 2px solid #8888cc; border-radius: 13px; margin-left: 8px; position: relative; overflow: hidden; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);">
         <div id="transTimerProgressBar" style="height: 100%; background: linear-gradient(90deg, #2196F3 0%, #64B5F6 50%, #BBDEFB 100%); width: 0%; transition: width 0.1s linear; border-radius: 11px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);"></div>
-        <div id="transTimerProgressText" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 13px; font-weight: bold; color: #333; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); letter-spacing: 0.5px;">🌐待機</div>
+        <div id="transTimerProgressText" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 13px; font-weight: bold; color: #333; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); letter-spacing: 0.5px;">🌐En espera</div>
     </div>
 </span><BR>
 
 <!-- # 文の終わり ######################### -->
-何ミリ秒黙ったら文を区切る？：　
-<input type="text" name="short_pause" value="750" id="short_pause" size="10" oninput="updateOptionValues();" />ミリ秒（半角数字で入れてね．1000ミリ秒 = 1秒）<BR>
-（500：すぐ切る｜750：普通｜1000：つなぐ　調整して．何も入れないと，これまでと同じ動作になる．）<BR>
+¿Después de cuántos milisegundos de silencio cortar la oración?：　
+<input type="text" name="short_pause" value="750" id="short_pause" size="10" oninput="updateOptionValues();" />milisegundos (ingresa números半角. 1000 milisegundos = 1 segundo)<BR>
+（500：cortar inmediatamente｜750：normal｜1000：conectar　Ajusta. Si no ingresas nada, funcionará igual que antes.）<BR>
 <HR>
 
 
 <!-- # 棒読みちゃん連携 ######################### -->
-- 棒読みちゃん連携を使う：<input type="checkbox" id="bouyomi" onchange="updateOptionValues()"> ← 使う場合チェック入れる．詳細 → <a target="_blank" href="https://twitter.com/sayonari/status/1386937837682003968">twitter</a><BR>
+- Usar integración con Bouyomi-chan：<input type="checkbox" id="bouyomi" onchange="updateOptionValues()"> ← Marca si lo usas. Detalles → <a target="_blank" href="https://twitter.com/sayonari/status/1386937837682003968">twitter</a><BR>
 <!-- # センシティブワード対応する！ ######################### -->
-- センシティブワード対応（***に置き換え）を<font color="red">やめる</font>：<input type="checkbox" id="anti_sexual" onchange="updateOptionValues()"> <BR>
+- <font color="red">Desactivar</font> el manejo de palabras sensibles (reemplazo con ***)：<input type="checkbox" id="anti_sexual" onchange="updateOptionValues()"> <BR>
 <HR>
 
 <!-- # URL view & copy button ############### -->
 <!-- URL :  -->
 <!-- <textarea name="url" id="url" rows="7" cols="90"></textarea><BR> -->
 <!-- 　　　<input type="button" value="copy to clipboard" id="textarea_copy" onclick="document.getElementsByTagName('textarea')[0].select();document.execCommand('copy');"> -->
-<!-- 　<a id="open_link" target="_self" href="">[同じタブで開く]</a><BR>
-別窓で開くと２つ起動して両方止まるよ！多重起動しないように気をつけて！<BR> -->
+<!-- 　<a id="open_link" target="_self" href="">[Abrir en la misma pestaña]</a><BR>
+¡Si abres en otra ventana se iniciarán dos y ambas se detendrán! ¡Ten cuidado de no iniciar múltiples instancias!<BR> -->
 <!-- <HR> -->
 
 <!-- # 設定セーブ＆ロードボタン ################## -->
-　<button onclick="saveSettings()">設定ファイルをPCに保存</button>　
-<button onclick="loadSettings()">設定ファイルをブラウザに読込</button>　：設定が完成したら，設定ファイルを保存しておきましょう　<BR>
+　<button onclick="saveSettings()">Guardar configuración en PC</button>　
+<button onclick="loadSettings()">Cargar configuración desde el navegador</button>　：Cuando termines, guarda tu archivo de configuración.　<BR>
 
 <HR>
 
 <!-- # .bat download ボタン ############################## -->
-.bat ファイル生成：<BR>
-これ使ったら，<font color="red">全画面ゲームしてても止まらない！</font>詳しくはこちら→（<a target="_blank" href="https://www.youtube.com/watch?v=8-UXx_tVeYk">解説動画</a>）<BR>
-.batファイルと，設定ファイルをダウンロードしてください．<BR>
+Generar archivo .bat：<BR>
+Si usas esto, <font color="red">¡no se detendrá incluso en juegos a pantalla completa!</font> Para más detalles →（<a target="_blank" href="https://www.youtube.com/watch?v=8-UXx_tVeYk">Video explicativo</a>）<BR>
+Descarga el archivo .bat y el archivo de configuración.<BR>
 
 <table border="1" style="width: auto;"><tr><td>
 <table style="width: auto;">
     <tr>
-        <td width="180">Windowsの人：</td>
-        <td><button onclick="generateBatFile('win')">Windows用 起動 .batファイル生成</button></td>
-        <td><button onclick="saveSettings()">設定ファイルをPCに保存</button></td>
+        <td width="180">Para Windows：</td>
+        <td><button onclick="generateBatFile('win')">Generar archivo .bat de inicio para Windows</button></td>
+        <td><button onclick="saveSettings()">Guardar configuración en PC</button></td>
     </tr>
 </tr>
 </table>
@@ -672,9 +680,9 @@ PC内フォント：<select id="trans_text3_system_font" onchange="applySystemFo
 <table border="1" style="width: auto;"><tr><td>
 <table style="width: auto;">
     <tr>
-        <td width="180">Macの人：</td>
-        <td><button onclick="generateBatFile('mac')">Mac用 起動 .commandファイル生成</button></td>
-        <td><button onclick="saveSettings()">設定ファイルをPCに保存</button></td>
+        <td width="180">Para Mac：</td>
+        <td><button onclick="generateBatFile('mac')">Generar archivo .command de inicio para Mac</button></td>
+        <td><button onclick="saveSettings()">Guardar configuración en PC</button></td>
     </tr>
 </table>
 </td></tr></table>
@@ -689,7 +697,7 @@ PC内フォント：<select id="trans_text3_system_font" onchange="applySystemFo
 </div><BR>
 
 <script>
-// Chrome Translation API の状態をチェックして表示を更新
+// Chrome Translation API の状態をチェックしてMostrarを更新
 function checkChromeTranslationAPI() {
     // Chrome Translation APIが利用可能かチェック
     if ('Translator' in self) {
@@ -701,21 +709,21 @@ function checkChromeTranslationAPI() {
         const apiKeyInput = document.getElementById('gas_key');
         if (apiKeyInput) {
             apiKeyInput.style.backgroundColor = '#f0f0f0';
-            apiKeyInput.placeholder = 'Chrome高速翻訳モードのため不要';
+            apiKeyInput.placeholder = 'No necesario en modo Chrome rápido';
         }
         
         // 翻訳ステータスも更新
         const statusEl = document.getElementById('translationStatus');
         if (statusEl) {
-            statusEl.textContent = 'Chrome高速モード';
+            statusEl.textContent = 'Modo rápido Chrome';
             statusEl.style.color = '#2e7d32';
         }
         
-        console.log('🚀 Chrome Translation API (Chrome 138+) 検出 - 高速翻訳モード有効');
+        console.log('🚀 Chrome Translation API (Chrome 138+) detectado - Modo de traducción rápida activado');
         return true;
     } else {
         // Chrome Translation APIが利用不可（通常のGAS APIモード）
-        console.log('Chrome Translation APIは利用できません - GAS APIモードで動作');
+        console.log('Chrome Translation API no disponible - Funcionando en modo GAS API');
         return false;
     }
 }
@@ -772,7 +780,7 @@ window.addEventListener('DOMContentLoaded', function() {
         , "translation_method"];
 
     // 新版：全設定はjimakuChan_presetsで管理（jimakuChan_configは廃止）
-    // configオブジェクトはプリセット保存時の一時的なデータ収集用のみ
+    // configオブジェクトはPreajustes保存時の一時的なデータ収集用のみ
     const config = {};
 
     // 翻訳画面とURLを初期化 ///////////////
@@ -791,29 +799,29 @@ window.addEventListener('DOMContentLoaded', function() {
                     + "&size4=" + (config.size4 || "25") + "&weight4=" + (config.weight4 || "900") + "&color4=" + (config.color4 || "#ffffff")
                     + "&st_color4=" + (config.st_color4 || "#000000") + "&st_width4=" + (config.st_width4 || "6");
     
-    console.log('初期読み込み URL:', initial_url);
+    console.log('URL de carga inicial:', initial_url);
     document.getElementById('asr_frame').src = initial_url;
     // document.getElementById('url').innerHTML = base_url;
     
     // iframeがロードされた後に設定を反映
     document.getElementById('asr_frame').onload = function() {
-        console.log('iframe読み込み完了');
+        console.log('iframe cargado completamente');
         setTimeout(applyInitialSettings, 300);
     };
-    // frame_heightの初期化はプリセット読み込み後に行うため、ここでは削除
+    // frame_heightの初期化はPreajustes読み込み後に行うため、ここでは削除
     // applyFrameHeight関数で処理される
 
 
-    // フォントの直接入力の場合，テキストフィールドを有効化、システムフォントプルダウンを制御 ////////////////////
+    // Fuenteの直接入力の場合，テキストフィールドを有効化、システムFuenteプルダウンを制御 ////////////////////
     function selectFont() {
         var speech_text_font_selector = document.getElementById('speech_text_font_selector').value;
         var trans_text_font_selector = document.getElementById('trans_text_font_selector').value;
         var trans_text2_font_selector = document.getElementById('trans_text2_font_selector').value;
         var trans_text3_font_selector = document.getElementById('trans_text3_font_selector').value;
         
-        console.log("フォント選択状態: " + speech_text_font_selector);
+        console.log("Estado de selección de fuente: " + speech_text_font_selector);
         
-        // 音声認識フォント
+        // 音声認識Fuente
         var speechSystemFont = document.getElementById('speech_text_system_font');
         if (speech_text_font_selector === "direct") {
             if (speechSystemFont) {
@@ -830,7 +838,7 @@ window.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        // 翻訳1フォント
+        // 翻訳1Fuente
         var transSystemFont = document.getElementById('trans_text_system_font');
         if (trans_text_font_selector === "direct") {
             if (transSystemFont) {
@@ -847,7 +855,7 @@ window.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        // 翻訳2フォント
+        // 翻訳2Fuente
         var trans2SystemFont = document.getElementById('trans_text2_system_font');
         if (trans_text2_font_selector === "direct") {
             if (trans2SystemFont) {
@@ -864,7 +872,7 @@ window.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        // 翻訳3フォント
+        // 翻訳3Fuente
         var trans3SystemFont = document.getElementById('trans_text3_system_font');
         if (trans_text3_font_selector === "direct") {
             if (trans3SystemFont) {
@@ -886,10 +894,10 @@ window.addEventListener('DOMContentLoaded', function() {
     
     // 初期設定の反映
     selectFont();
-    // PC内フォントと直接入力フィールドの初期状態を設定
+    // PC内Fuenteと直接入力フィールドの初期状態を設定
     initializeSystemFontFields();
     
-    // プリセット初期化は最下部で実行
+    // Preajustes初期化は最Abajo部で実行
 
     // 初期設定を適用する関数
     function applyInitialSettings() {
@@ -898,7 +906,7 @@ window.addEventListener('DOMContentLoaded', function() {
             if (document.getElementById('asr_frame').contentWindow && 
                 document.getElementById('asr_frame').contentWindow.document) {
                 
-                console.log('初期設定を適用中...');
+                console.log('Aplicando configuración inicial...');
                 
                 // まず設定をURLパラメータで更新（iframe再読み込み）
                 updateOptionValues(false);
@@ -906,11 +914,11 @@ window.addEventListener('DOMContentLoaded', function() {
                 // 少し待ってからDOMの直接操作も実行
                 setTimeout(function() {
                     applyAllSettings();
-                    // スライドバー数値表示を更新
+                    // スライドバー数値Mostrarを更新
                     updateVisualSettings();
                     // ページタイトルを更新
                     updatePageTitle();
-                    console.log('初期設定適用完了');
+                    console.log('Configuración inicial aplicada completamente');
                 }, 200);
                 
             } else {
@@ -918,7 +926,7 @@ window.addEventListener('DOMContentLoaded', function() {
                 setTimeout(applyInitialSettings, 100);
             }
         } catch (error) {
-            console.error('初期設定適用エラー:', error);
+            console.error('Error al aplicar configuración inicial:', error);
             // エラーが発生した場合も再試行
             setTimeout(applyInitialSettings, 200);
         }
@@ -934,7 +942,7 @@ window.addEventListener('DOMContentLoaded', function() {
         if (chromeRadio.checked) {
             // Chrome内蔵翻訳選択時
             notice.style.display = 'block';
-            // モデルダウンロードエリアの表示状態を確認するためチェック実行
+            // モデルダウンロードエリアのMostrar状態を確認するためチェック実行
             checkAllTranslationModels();
             
             // iframe内に翻訳方法変更を通知（タイマー開始のため）
@@ -954,7 +962,7 @@ window.addEventListener('DOMContentLoaded', function() {
         const selectedMethod = chromeRadio.checked ? 'chrome' : 'gas';
         saveTranslationMethodToStorage(selectedMethod);
         
-        // プリセットに自動保存
+        // Preajustesに自動保存
         updateOptionValues();
     }
     
@@ -962,7 +970,7 @@ window.addEventListener('DOMContentLoaded', function() {
     function updateTranslationMethodInIframe(method = null) {
         const iframe = document.getElementById('asr_frame');
         if (!iframe || !iframe.contentWindow) {
-            console.warn('iframe未準備のため翻訳方法更新をスキップ');
+            console.warn('iframe no preparado, omitiendo actualización del método de traducción');
             return;
         }
         
@@ -972,9 +980,9 @@ window.addEventListener('DOMContentLoaded', function() {
                 type: 'updateTranslationMethod',
                 method: selectedMethod
             }, '*');
-            console.log(`翻訳方法を${selectedMethod}に更新しました（タイマー${selectedMethod === 'chrome' ? '開始' : '停止'}）`);
+            console.log(`Método de traducción actualizado a ${selectedMethod} (temporizador ${selectedMethod === 'chrome' ? 'iniciado' : 'detenido'})`);
         } catch (error) {
-            console.error('iframe内の翻訳方法更新エラー:', error);
+            console.error('Error al actualizar método de traducción en iframe:', error);
         }
     }
     
@@ -987,9 +995,9 @@ window.addEventListener('DOMContentLoaded', function() {
     function saveTranslationMethodToStorage(method) {
         try {
             localStorage.setItem('jimakuChan_translationMethod', method);
-            console.log('翻訳方法をlocalStorageに保存:', method);
+            console.log('Método de traducción guardado en localStorage:', method);
         } catch (error) {
-            console.warn('翻訳方法のlocalStorage保存に失敗:', error);
+            console.warn('Error al guardar método de traducción en localStorage:', error);
         }
     }
     
@@ -998,7 +1006,7 @@ window.addEventListener('DOMContentLoaded', function() {
             const saved = localStorage.getItem('jimakuChan_translationMethod');
             return saved || 'chrome'; // デフォルトはChrome内蔵
         } catch (error) {
-            console.warn('翻訳方法のlocalStorage読み込みに失敗:', error);
+            console.warn('Error al cargar método de traducción desde localStorage:', error);
             return 'chrome';
         }
     }
@@ -1036,7 +1044,7 @@ window.addEventListener('DOMContentLoaded', function() {
             // iframe内にも通知
             updateTranslationMethodInIframe();
             
-            console.log('翻訳方法をlocalStorageから復元:', savedMethod);
+            console.log('Método de traducción restaurado desde localStorage:', savedMethod);
         }
     }
     
@@ -1055,9 +1063,9 @@ window.addEventListener('DOMContentLoaded', function() {
                 iframe.contentWindow.arg_trans3 = newLang === 'none' ? null : newLang;
             }
             
-            console.log(`翻訳言語${transNum}を${newLang}に更新しました`);
+            console.log(`Idioma de traducción ${transNum} actualizado a ${newLang}`);
         } catch (error) {
-            console.error('iframe内の翻訳言語更新エラー:', error);
+            console.error('Error al actualizar idioma de traducción en iframe:', error);
         }
     }
     
@@ -1077,7 +1085,7 @@ window.addEventListener('DOMContentLoaded', function() {
         var anti_sexual = document.getElementById('anti_sexual').checked;
         var translation_method = getTranslationMethod();
         
-        // フォント変数の初期化
+        // Fuente変数の初期化
         var speech_text_font = '';
         var trans_text_font = '';
         var trans_text2_font = '';
@@ -1104,7 +1112,7 @@ window.addEventListener('DOMContentLoaded', function() {
         if(trans3 != 'none') {new_url = new_url + "&trans3=" + trans3;} 
 
         // font の処理
-        console.log('[DEBUG] Font processing:', {
+        console.log('[DEBUG] Procesamiento de fuente:', {
             speech_text_font_selector,
             speech_text_system_font,
             speech_text_direct_font
@@ -1112,8 +1120,8 @@ window.addEventListener('DOMContentLoaded', function() {
         if (speech_text_font_selector !== "direct") {
             speech_text_font = speech_text_font_selector;
         } else {
-            // 直接指定の場合、直接入力の値を優先、なければシステムフォントの値を使用
-            // ただし、システムフォントの値が'direct'の場合は無視
+            // 直接指定の場合、直接入力の値を優先、なければシステムFuenteの値を使用
+            // ただし、システムFuenteの値が'direct'の場合は無視
             if (speech_text_direct_font && speech_text_direct_font !== '') {
                 speech_text_font = speech_text_direct_font;
             } else if (speech_text_system_font && speech_text_system_font !== '' && speech_text_system_font !== 'direct') {
@@ -1121,7 +1129,7 @@ window.addEventListener('DOMContentLoaded', function() {
             } else {
                 speech_text_font = '';
             }
-            console.log('[DEBUG] Direct font selected:', speech_text_font);
+            console.log('[DEBUG] Fuente directa seleccionada:', speech_text_font);
         }
         if (trans_text_font_selector !== "direct") {
             trans_text_font = trans_text_font_selector;
@@ -1158,9 +1166,9 @@ window.addEventListener('DOMContentLoaded', function() {
         }
         if(speech_text_font != '') {
             new_url = new_url + "&speech_text_font=" + speech_text_font;
-            console.log('[DEBUG] Adding speech_text_font to URL:', speech_text_font);
+            console.log('[DEBUG] Agregando speech_text_font a URL:', speech_text_font);
         } else {
-            console.log('[DEBUG] speech_text_font is empty, not adding to URL');
+            console.log('[DEBUG] speech_text_font está vacío, no se agrega a URL');
         } 
         if(trans_text_font != '') {new_url = new_url + "&trans_text_font=" + trans_text_font;} 
         if(trans_text2_font != '') {new_url = new_url + "&trans_text2_font=" + trans_text2_font;} 
@@ -1189,20 +1197,20 @@ window.addEventListener('DOMContentLoaded', function() {
             config[p] = eval(p);
         }
         
-        // checkbox設定もconfigに追加（プリセット保存用のみ）
+        // checkbox設定もconfigに追加（Preajustes保存用のみ）
         config.bouyomi = bouyomi;
         config.anti_sexual = anti_sexual;
         config.translation_method = translation_method;
 
-        // 注意：jimakuChan_configへの保存は廃止。全てプリセットで管理
+        // 注意：jimakuChan_configへの保存は廃止。全てPreajustesで管理
 
-        // プリセットへの自動保存（プリセット読み込み中でなければ実行）
-        console.log('updateOptionValues - 自動保存チェック:', 'isLoadingPreset:', isLoadingPreset, 'currentPreset:', currentPreset);
+        // Preajustesへの自動保存（Preajustes読み込み中でなければ実行）
+        console.log('updateOptionValues - Verificación de guardado automático:', 'isLoadingPreset:', isLoadingPreset, 'currentPreset:', currentPreset);
         if (!isLoadingPreset) {
-            console.log('自動保存スケジュール - 100ms後に実行');
+            console.log('Guardado automático programado - Ejecutando en 100ms');
             setTimeout(saveCurrentPreset, 100);
         } else {
-            console.log('自動保存スキップ - プリセット読み込み中');
+            console.log('Guardado automático omitido - Cargando preajuste');
         }
 
         // ページタイトルの更新
@@ -1221,7 +1229,7 @@ window.addEventListener('DOMContentLoaded', function() {
                 }
             } else {
                 // 翻訳言語以外の変更時はリロード
-                console.log('iframe更新 URL:', new_url);
+                console.log('Actualizando iframe URL:', new_url);
                 document.getElementById('asr_frame').src = new_url;
             }
         }
@@ -1238,13 +1246,13 @@ window.addEventListener('DOMContentLoaded', function() {
             const presetSelect = document.getElementById('presetSelect');
             if (presetSelect && presetSelect.selectedIndex > 0) {
                 const selectedText = presetSelect.options[presetSelect.selectedIndex].text;
-                document.title = `jimakuChan: 音声認識字幕ちゃん [${selectedText}]`;
+                document.title = `jimakuChan: Subtítulos con reconocimiento de voz [${selectedText}]`;
             } else {
-                document.title = 'jimakuChan: 音声認識字幕ちゃん [CONFIG]';
+                document.title = 'Subtítulos en Vivo: Reconocimiento de voz y subtítulos [CONFIG]';
             }
         } catch (error) {
-            console.log('タイトル更新エラー:', error);
-            document.title = 'jimakuChan: 音声認識字幕ちゃん [CONFIG]';
+            console.log('Error al actualizar título:', error);
+            document.title = 'Subtítulos en Vivo';
         }
     }
 
@@ -1253,47 +1261,47 @@ window.addEventListener('DOMContentLoaded', function() {
         updateOptionValues();
     }, 100);
 
-    // PCにインストールされているフォントを検出する関数
+    // PCにインストールされているFuenteを検出する関数
     function detectSystemFonts() {
-        // よく使われるシステムフォントのリスト（拡張版）
+        // よく使われるシステムFuenteのリスト（拡張版）
         const commonFonts = [
-            // 日本語フォント - Windows
+            // JaponésFuente - Windows
             'Yu Gothic', 'Yu Gothic UI', 'Yu Gothic Medium', 'Yu Mincho', 'Meiryo', 'Meiryo UI',
             'MS Gothic', 'MS PGothic', 'MS UI Gothic', 'MS Mincho', 'MS PMincho',
             'BIZ UDGothic', 'BIZ UDPGothic', 'BIZ UDMincho', 'BIZ UDPMincho',
             'UD Digi Kyokasho', 'UD Digi Kyokasho N-R', 'UD Digi Kyokasho NK-R',
             
-            // 日本語フォント - Mac
+            // JaponésFuente - Mac
             'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Hiragino Kaku Gothic Pro',
             'Hiragino Mincho ProN', 'Hiragino Mincho Pro', 'Hiragino Maru Gothic ProN',
             'Osaka', 'Osaka-Mono', 'Tsukushi A Round Gothic', 'Tsukushi B Round Gothic',
             'YuKyokasho', 'YuKyokasho Yoko', 'Klee',
             
-            // 日本語フォント - 共通/Web
+            // JaponésFuente - 共通/Web
             'Noto Sans JP', 'Noto Sans CJK JP', 'Noto Serif JP', 'Noto Serif CJK JP',
             'Source Han Sans', 'Source Han Serif', '源ノ角ゴシック', '源ノ明朝',
             'Sawarabi Gothic', 'Sawarabi Mincho', 'Kosugi', 'Kosugi Maru',
             'M PLUS 1p', 'M PLUS Rounded 1c', 'M PLUS 2',
             
-            // 英語フォント - 基本
+            // InglésFuente - 基本
             'Arial', 'Arial Black', 'Arial Narrow', 'Arial Unicode MS',
             'Helvetica', 'Helvetica Neue', 'Times New Roman', 'Georgia',
             'Verdana', 'Tahoma', 'Trebuchet MS', 'Comic Sans MS',
             'Courier', 'Courier New', 'Lucida Console', 'Consolas',
             
-            // 英語フォント - 追加
+            // InglésFuente - 追加
             'Calibri', 'Cambria', 'Candara', 'Century', 'Century Gothic',
             'Franklin Gothic', 'Futura', 'Garamond', 'Gill Sans',
             'Impact', 'Lucida Grande', 'Lucida Sans', 'Monaco',
             'Palatino', 'Palatino Linotype', 'Segoe UI', 'Segoe Print',
             
-            // システムフォント
+            // システムFuente
             'system-ui', '-apple-system', 'BlinkMacSystemFont',
             'SF Pro Display', 'SF Pro Text', 'SF Mono',
             '.AppleSystemUIFont', 'Apple Color Emoji',
             'Segoe UI Emoji', 'Segoe UI Symbol', 'Roboto',
             
-            // 追加の装飾フォント
+            // 追加の装飾Fuente
             'HGP創英角ｺﾞｼｯｸUB', 'HGP創英角ﾎﾟｯﾌﾟ体', 'HGP教科書体', 'HGPｺﾞｼｯｸE',
             'HGPｺﾞｼｯｸM', 'HGP明朝E', 'HGS創英角ｺﾞｼｯｸUB', 'HGS創英角ﾎﾟｯﾌﾟ体',
             'DF平成明朝体', 'DF平成ゴシック体', 'DFP平成明朝体', 'DFP平成ゴシック体'
@@ -1303,7 +1311,7 @@ window.addEventListener('DOMContentLoaded', function() {
         const context = canvas.getContext('2d');
         const testString = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789あいうえおカキクケコ漢字';
         
-        // ベースライン（デフォルトフォント）のサイズを測定
+        // ベースライン（デフォルトFuente）のTamañoを測定
         context.font = '12px monospace';
         const baselineWidth = context.measureText(testString).width;
         
@@ -1313,7 +1321,7 @@ window.addEventListener('DOMContentLoaded', function() {
             context.font = `12px "${font}", monospace`;
             const width = context.measureText(testString).width;
             
-            // ベースラインと幅が異なれば、そのフォントが利用可能
+            // ベースラインと幅が異なれば、そのFuenteが利用可能
             if (width !== baselineWidth) {
                 availableFonts.push(font);
             }
@@ -1322,7 +1330,7 @@ window.addEventListener('DOMContentLoaded', function() {
         return availableFonts;
     }
 
-    // フォント選択プルダウンを初期化する関数
+    // Fuente選択プルダウンを初期化する関数
     function initializeFontSelectors() {
         const availableFonts = detectSystemFonts();
         const fontSelectors = ['speech_text_system_font', 'trans_text_system_font', 'trans_text2_system_font', 'trans_text3_system_font'];
@@ -1336,16 +1344,16 @@ window.addEventListener('DOMContentLoaded', function() {
                 // デフォルトオプションを追加
                 const defaultOption = document.createElement('option');
                 defaultOption.value = '';
-                defaultOption.textContent = '選択してください';
+                defaultOption.textContent = 'Selecciona';
                 selector.appendChild(defaultOption);
                 
                 // [直接指定]オプションを追加
                 const directOption = document.createElement('option');
                 directOption.value = 'direct';
-                directOption.textContent = '[直接指定]';
+                directOption.textContent = '[Especificar directamente]';
                 selector.appendChild(directOption);
                 
-                // 検出されたフォントを追加
+                // 検出されたFuenteを追加
                 availableFonts.forEach(font => {
                     const option = document.createElement('option');
                     option.value = font;
@@ -1360,24 +1368,24 @@ window.addEventListener('DOMContentLoaded', function() {
         setTimeout(selectFont, 100);
     }
 
-    // フォントステータスを更新する関数
+    // Fuenteステータスを更新する関数
     function updateFontStatus(message, color) {
         const statusElement = document.getElementById('font_api_status');
         if (!statusElement) return;
         
         statusElement.innerHTML = message;
         statusElement.style.color = color || '#666';
-        console.log('フォントステータス:', message);
+        console.log('Estado de fuente:', message);
     }
     
-    // Font Access API対応状況をチェックして表示する関数（表示を無効化）
+    // Font Access API対応状況をチェックしてMostrarする関数（Mostrarを無効化）
     function checkFontAPIStatus() {
         if ('queryLocalFonts' in window) {
             // updateFontStatus('Font Access API対応（実験的機能）', '#008000');
             
             // 実際に使えるかテスト
             window.queryLocalFonts().then(fonts => {
-                // updateFontStatus(`Font Access API対応（${fonts.length}個のフォント検出）`, '#008000');
+                // updateFontStatus(`Font Access API対応（${fonts.length}個のFuente検出）`, '#008000');
             }).catch(error => {
                 // updateFontStatus('Font Access API（権限エラー）', '#ff6600');
             });
@@ -1386,25 +1394,25 @@ window.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // 直接指定フォントを適用する関数
-    // フォントが実際に存在するかをチェックする関数
+    // 直接指定Fuenteを適用する関数
+    // Fuenteが実際に存在するかをチェックする関数
     function checkFontExists(fontName) {
         const canvas = document.createElement('canvas');
         const context = canvas.getContext('2d');
         const testString = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789あいうえおカキクケコ漢字';
         
-        // ベースライン（確実に存在するフォント）のサイズを測定
+        // ベースライン（確実に存在するFuente）のTamañoを測定
         context.font = '12px monospace';
         const monoWidth = context.measureText(testString).width;
         
         context.font = '12px sans-serif';
         const sansWidth = context.measureText(testString).width;
         
-        // 指定されたフォントで測定
+        // 指定されたFuenteで測定
         context.font = `12px "${fontName}", monospace`;
         const testWidth = context.measureText(testString).width;
         
-        // monospaceと同じ幅なら、フォントが見つからずフォールバックされた可能性が高い
+        // monospaceと同じ幅なら、Fuenteが見つからずフォールバックされた可能性が高い
         return testWidth !== monoWidth;
     }
 
@@ -1414,8 +1422,8 @@ window.addEventListener('DOMContentLoaded', function() {
         try {
             const iframe = document.getElementById('asr_frame');
             if (!iframe || !iframe.contentWindow || !iframe.contentWindow.document) {
-                console.log('iframe not ready, font will be applied later');
-                updateFontStatus('⏳ iframe準備中...', '#ff6600');
+                console.log('iframe no listo, la fuente se aplicará más tarde');
+                updateFontStatus('⏳ iframe preparándose...', '#ff6600');
                 return;
             }
             
@@ -1423,12 +1431,12 @@ window.addEventListener('DOMContentLoaded', function() {
             const element = iframeDoc.getElementById(targetElement);
             
             if (element) {
-                // フォント名の大文字小文字を調整（Kleeなど）
+                // Fuente名の大Texto小Textoを調整（Kleeなど）
                 if (fontName.toLowerCase() === 'klee') {
                     fontName = 'Klee';
                 }
                 
-                // フォントを適用
+                // Fuenteを適用
                 const fontFamily = `"${fontName}", sans-serif`;
                 element.style.fontFamily = fontFamily;
                 
@@ -1441,9 +1449,9 @@ window.addEventListener('DOMContentLoaded', function() {
                 if (fgElement) fgElement.style.fontFamily = fontFamily;
                 if (imbElement) imbElement.style.fontFamily = fontFamily;
                 
-                console.log(`直接指定フォント適用: ${fontName} → ${targetElement}`);
+                console.log(`Fuente directa aplicada: ${fontName} → ${targetElement}`);
                 
-                // フォントが実際に存在するかチェック
+                // Fuenteが実際に存在するかチェック
                 const fontExists = checkFontExists(fontName);
                 
                 if (fontExists) {
@@ -1454,19 +1462,19 @@ window.addEventListener('DOMContentLoaded', function() {
                     if (appliedFont.includes(fontName)) {
                         // updateFontStatus(`✅ 直接指定: ${fontName}`, '#008000');
                     } else {
-                        // updateFontStatus(`⚠️ 直接指定: ${fontName} (部分的に適用)`, '#ff6600');
+                        // updateFontStatus(`⚠️ 直接指定: ${fontName} (aplicado parcialmente)`, '#ff6600');
                     }
                 } else {
-                    // updateFontStatus(`❌ フォントなしエラー 直接指定: ${fontName}`, '#cc0000');
+                    // updateFontStatus(`❌ Error de fuente 直接指定: ${fontName}`, '#cc0000');
                 }
             }
         } catch (error) {
-            console.log('直接指定フォント適用エラー:', error);
-            // updateFontStatus(`❌ エラー: ${error.message}`, '#cc0000');
+            console.log('Error al aplicar fuente directa:', error);
+            // updateFontStatus(`❌ Error: ${error.message}`, '#cc0000');
         }
     }
     
-    // システムフォントを適用する関数
+    // システムFuenteを適用する関数
     function applySystemFont(fontName, targetElement) {
         // 対応する直接入力フィールドを取得
         const directFontInput = document.getElementById(targetElement + '_direct_font');
@@ -1488,19 +1496,19 @@ window.addEventListener('DOMContentLoaded', function() {
                 directFontInput.value = '';
             }
             
-            // 選択されたフォントを適用
+            // 選択されたFuenteを適用
             if (fontName && fontName !== '') {
                 try {
                     const iframe = document.getElementById('asr_frame');
                     if (!iframe || !iframe.contentWindow || !iframe.contentWindow.document) {
-                        console.log('iframe not ready, font will be applied later');
+                        console.log('iframe no listo, la fuente se aplicará más tarde');
                         return;
                     }
                     
                     const iframeDoc = iframe.contentWindow.document;
                     const element = iframeDoc.getElementById(targetElement);
                     if (element) {
-                        // フォント名の大文字小文字を調整（Kleeなど）
+                        // Fuente名の大Texto小Textoを調整（Kleeなど）
                         if (fontName.toLowerCase() === 'klee') {
                             fontName = 'Klee';
                         }
@@ -1517,26 +1525,26 @@ window.addEventListener('DOMContentLoaded', function() {
                         if (fgElement) fgElement.style.fontFamily = fontFamily;
                         if (imbElement) imbElement.style.fontFamily = fontFamily;
                         
-                        console.log(`システムフォント適用: ${fontName} → ${targetElement}`);
+                        console.log(`Fuente del sistema aplicada: ${fontName} → ${targetElement}`);
                         
-                        // フォントが実際に適用されたかチェック
+                        // Fuenteが実際に適用されたかチェック
                         const computedStyle = iframe.contentWindow.document.defaultView.getComputedStyle(element);
                         const appliedFont = computedStyle.fontFamily;
                         
                         if (appliedFont.includes(fontName)) {
-                            // updateFontStatus(`✅ PC内フォント: ${fontName}`, '#008000');
+                            // updateFontStatus(`✅ Fuente en PC: ${fontName}`, '#008000');
                         } else {
-                            // updateFontStatus(`⚠️ PC内フォント: ${fontName} (未検出)`, '#ff6600');
+                            // updateFontStatus(`⚠️ Fuente en PC: ${fontName} (no detectada)`, '#ff6600');
                         }
                     }
                 } catch (error) {
-                    console.log('システムフォント適用エラー:', error);
+                    console.log('Error al aplicar fuente del sistema:', error);
                 }
             }
         }
     }
 
-    // PC内フォントと直接入力フィールドの状態を初期化する関数
+    // PC内Fuenteと直接入力フィールドの状態を初期化する関数
     function initializeSystemFontFields() {
         const fontTargets = ['speech_text', 'trans_text', 'trans_text2', 'trans_text3'];
         
@@ -1551,11 +1559,11 @@ window.addEventListener('DOMContentLoaded', function() {
                 
                 // 直接入力フィールドの状態を設定
                 if (savedSystemFont === 'direct') {
-                    // [直接指定]が選択されている場合は、フォント名が空でも有効化
+                    // [直接指定]が選択されている場合は、Fuente名が空でも有効化
                     directFontInput.disabled = false;
                     directFontInput.style.backgroundColor = '';
                     directFontInput.style.color = '';
-                    // 直接入力されたフォントがある場合のみ適用
+                    // 直接入力されたFuenteがある場合のみ適用
                     if (savedDirectFont) {
                         applyDirectFont(savedDirectFont, target);
                     }
@@ -1563,7 +1571,7 @@ window.addEventListener('DOMContentLoaded', function() {
                     directFontInput.disabled = true;
                     directFontInput.style.backgroundColor = '#f0f0f0';
                     directFontInput.style.color = '#999';
-                    // システムフォントを適用
+                    // システムFuenteを適用
                     if (savedSystemFont && savedSystemFont !== '' && savedSystemFont !== 'direct') {
                         applySystemFont(savedSystemFont, target);
                     }
@@ -1577,32 +1585,32 @@ window.addEventListener('DOMContentLoaded', function() {
         try {
             const iframe = document.getElementById('asr_frame');
             if (!iframe || !iframe.contentWindow || !iframe.contentWindow.document) {
-                console.log('iframe not ready for line spacing update');
+                console.log('iframe no listo para actualizar espaciado entre líneas');
                 return;
             }
             
             const element = iframe.contentWindow.document.getElementById(targetElement);
             if (element) {
                 element.style.marginBottom = spacing + 'px';
-                console.log(`行間更新: ${targetElement} → ${spacing}px`);
+                console.log(`Espaciado actualizado: ${targetElement} → ${spacing}px`);
             }
         } catch (error) {
-            console.log('行間更新エラー:', error);
+            console.log('Error al actualizar espaciado:', error);
         }
     }
     
-    // 選択されたフォントを適用する関数
+    // 選択されたFuenteを適用する関数
     function applySelectedFont(selector, targetElement) {
         try {
             const iframe = document.getElementById('asr_frame');
             if (!iframe || !iframe.contentWindow || !iframe.contentWindow.document) {
-                console.log('iframe not ready, font will be applied later');
+                console.log('iframe no listo, la fuente se aplicará más tarde');
                 return;
             }
             
             let fontValue = selector.value;
             
-            // "direct"の場合は何もしない（システムフォント選択で処理）
+            // "direct"の場合は何もしない（システムFuente選択で処理）
             if (fontValue === 'direct') {
                 return;
             }
@@ -1613,7 +1621,7 @@ window.addEventListener('DOMContentLoaded', function() {
                 directFontInput.value = '';
             }
             
-            // バックスラッシュを除去してフォント名を正規化
+            // バックスラッシュを除去してFuente名を正規化
             fontValue = fontValue.replace(/\\\\/g, '');
             
             const iframeDoc = iframe.contentWindow.document;
@@ -1631,11 +1639,11 @@ window.addEventListener('DOMContentLoaded', function() {
                 if (fgElement) fgElement.style.fontFamily = fontFamily;
                 if (imbElement) imbElement.style.fontFamily = fontFamily;
                 
-                console.log(`フォント適用: ${fontValue} → ${targetElement}`);
-                // updateFontStatus(`✅ フォント: ${fontValue}`, '#008000');
+                console.log(`Fuente aplicada: ${fontValue} → ${targetElement}`);
+                // updateFontStatus(`✅ Fuente: ${fontValue}`, '#008000');
             }
         } catch (error) {
-            console.log('フォント適用エラー:', error);
+            console.log('Error al aplicar fuente:', error);
         }
     }
 
@@ -1670,7 +1678,7 @@ window.addEventListener('DOMContentLoaded', function() {
                 } 
             }
         } catch (error) {
-            console.error('色変更エラー:', error);
+            console.error('Error al cambiar color:', error);
         }
     }
 
@@ -1692,7 +1700,7 @@ window.addEventListener('DOMContentLoaded', function() {
                 imbElement.style.webkitTextStrokeWidth = width + 'pt';
             }
         } catch (error) {
-            console.error('ボーダー設定エラー:', error);
+            console.error('Error al configurar borde:', error);
         }
    }
 
@@ -1710,7 +1718,7 @@ window.addEventListener('DOMContentLoaded', function() {
         try {
             var iframe = document.getElementById('asr_frame');
             if (!iframe || !iframe.contentWindow || !iframe.contentWindow.document) {
-                console.log('iframe未準備のため設定適用をスキップ');
+                console.log('iframe no preparado, omitiendo aplicación de configuración');
                 return false;
             }
             
@@ -1747,7 +1755,7 @@ window.addEventListener('DOMContentLoaded', function() {
                 }
             }
             
-            // 各テキストレイヤーの色とサイズを更新
+            // 各テキストレイヤーの色とTamañoを更新
             for (var i = 1; i <= 4; i++) {
                 changeTextColor('fg', document.getElementById('color' + i).value, i);
                 changeTextColor('bg', document.getElementById('st_color' + i).value, i);
@@ -1759,7 +1767,7 @@ window.addEventListener('DOMContentLoaded', function() {
                     textElement.style.fontSize = document.getElementById('size' + i).value + 'pt';
                     textElement.style.fontWeight = document.getElementById('weight' + i).value;
                     
-                    // フォント設定
+                    // Fuente設定
                     var fontSelectorIds = ['speech_text_font_selector', 'trans_text_font_selector', 'trans_text2_font_selector', 'trans_text3_font_selector'];
                     var systemFontIds = ['speech_text_system_font', 'trans_text_system_font', 'trans_text2_system_font', 'trans_text3_system_font'];
                     
@@ -1768,14 +1776,14 @@ window.addEventListener('DOMContentLoaded', function() {
                     
                     if (fontSelector) {
                         if (fontSelector.value === 'direct' && systemFontSelector && systemFontSelector.value) {
-                            // 直接指定 + システムフォント選択の場合
+                            // 直接指定 + システムFuente選択の場合
                             textElement.style.fontFamily = `"${systemFontSelector.value}", sans-serif`;
-                            console.log('システムフォント設定:', lang_line[i-1], systemFontSelector.value);
+                            console.log('Configuración de fuente del sistema:', lang_line[i-1], systemFontSelector.value);
                         } else if (fontSelector.value !== 'direct' && fontSelector.value !== '') {
-                            // プリセットフォント選択の場合
+                            // PreajustesFuente選択の場合
                             var fontValue = fontSelector.value.replace(/\\\\/g, '');  // バックスラッシュを除去
                             textElement.style.fontFamily = `"${fontValue}", sans-serif`;
-                            console.log('プリセットフォント設定:', lang_line[i-1], fontValue);
+                            console.log('Configuración de fuente preestablecida:', lang_line[i-1], fontValue);
                         }
                     }
                 }
@@ -1791,12 +1799,12 @@ window.addEventListener('DOMContentLoaded', function() {
             }
             
             
-            // システムフォントプルダウンの状態を更新
+            // システムFuenteプルダウンの状態を更新
             selectFont();
             
             return true;
         } catch (error) {
-            console.error('設定適用中にエラー:', error);
+            console.error('Error al aplicar configuración:', error);
             return false;
         }
     }
@@ -1823,7 +1831,7 @@ window.addEventListener('DOMContentLoaded', function() {
       url = decodeURIComponent(url);
   
       if (url === '') {
-        alert('URLがありません．エラーです．');
+        alert('No hay URL. Error.');
         return;
       }
       
@@ -1846,11 +1854,11 @@ window.addEventListener('DOMContentLoaded', function() {
 <!-- # 設定ファイルの保存と読込 ############################## -->
 <script>
 
-    // Save all presets to a file (全プリセットをファイルに保存)
+    // Save all presets to a file (全Preajustesをファイルに保存)
     function saveSettings() {
         const presets = localStorage.getItem('jimakuChan_presets');
         if (!presets) {
-            alert('保存するプリセットが見つかりません！');
+            alert('¡No se encontraron preajustes para guardar!');
             return;
         }
         
@@ -1868,14 +1876,14 @@ window.addEventListener('DOMContentLoaded', function() {
             link.download = 'jimakuChan_presets.json';
             link.click();
             URL.revokeObjectURL(link.href);
-            console.log('プリセットをファイルに保存しました');
+            console.log('Preajustes guardados en archivo');
         } catch (error) {
-            alert('プリセット保存エラー: ' + error.message);
-            console.error('プリセット保存エラー:', error);
+            alert('Error al guardar preajustes: ' + error.message);
+            console.error('Error al guardar preajustes:', error);
         }
     }
 
-    // Load presets from a file (プリセットをファイルから読み込み)
+    // Load presets from a file (Preajustesをファイルから読み込み)
     function loadSettings() {
         const input = document.createElement('input');
         input.type = 'file';
@@ -1888,36 +1896,36 @@ window.addEventListener('DOMContentLoaded', function() {
             reader.onload = function(readEvent) {
                 try {
                     const data = JSON.parse(readEvent.target.result);
-                    console.log('読み込んだファイル:', data);
+                    console.log('Archivo cargado:', data);
                     
-                    // 新形式のプリセットファイルの場合
+                    // 新形式のPreajustesファイルの場合
                     if (data.presets && data.version) {
-                        console.log('新形式プリセットファイルを読み込み');
+                        console.log('Cargando archivo de preajustes en nuevo formato');
                         localStorage.setItem('jimakuChan_presets', JSON.stringify(data.presets));
-                        alert(`プリセットを読み込みました (ver.${data.version})`);
+                        alert(`Preajustes cargados (ver.${data.version})`);
                         location.reload();
                     }
                     // 旧形式の設定ファイルの場合（互換性のため）
                     else if (data && typeof data === 'object' && !data.presets) {
-                        console.log('旧形式設定ファイルを読み込み - プリセットに変換');
+                        console.log('Cargando archivo de configuración en formato antiguo - Convirtiendo a preajustes');
                         const convertedPreset = {
                             default: {
-                                name: '読み込んだ設定',
+                                name: 'Configuración cargada',
                                 settings: data,
                                 lastModified: new Date().toISOString(),
                                 importedFrom: 'legacy_file'
                             }
                         };
                         localStorage.setItem('jimakuChan_presets', JSON.stringify(convertedPreset));
-                        alert('旧形式の設定ファイルをプリセットに変換して読み込みました');
+                        alert('Archivo de configuración antiguo convertido a preajustes y cargado');
                         location.reload();
                     }
                     else {
-                        alert('不正なファイル形式です');
+                        alert('Formato de archivo inválido');
                     }
                 } catch (error) {
-                    alert('ファイル読み込みエラー: ' + error.message);
-                    console.error('ファイル読み込みエラー:', error);
+                    alert('Error al cargar archivo: ' + error.message);
+                    console.error('Error al cargar archivo:', error);
                 }
             };
             reader.readAsText(file);
@@ -1927,12 +1935,12 @@ window.addEventListener('DOMContentLoaded', function() {
 
 </script>
 
-<!-- # 設定プリセット機能　############################ -->
+<!-- # Preajustes de configuración機能　############################ -->
 <script>
-    // プリセットの定義（可愛い配色で改善）
+    // Preajustesの定義（可愛い配色で改善）
     const defaultPresets = {
         default: {
-            name: "📋 選択してください",
+            name: "📋 Selecciona",
             settings: {
                 gas_key: "",
                 textAlign: "center",
@@ -1978,7 +1986,7 @@ window.addEventListener('DOMContentLoaded', function() {
             }
         },
         gaming: {
-            name: "🎮 ゲーム配信用",
+            name: "🎮 Para transmisión de juegos",
             settings: {
                 gas_key: "",
                 textAlign: "center",
@@ -2024,7 +2032,7 @@ window.addEventListener('DOMContentLoaded', function() {
             }
         },
         meeting: {
-            name: "💼 会議・打ち合わせ用",
+            name: "💼 Para reuniones y consultas",
             settings: {
                 gas_key: "",
                 textAlign: "left",
@@ -2070,7 +2078,7 @@ window.addEventListener('DOMContentLoaded', function() {
             }
         },
         language_learning: {
-            name: "📚 語学学習用",
+            name: "📚 Para aprendizaje de idiomas",
             settings: {
                 gas_key: "",
                 textAlign: "center",
@@ -2116,7 +2124,7 @@ window.addEventListener('DOMContentLoaded', function() {
             }
         },
         accessibility: {
-            name: "♿ アクセシビリティ重視",
+            name: "♿ Enfocado en accesibilidad",
             settings: {
                 gas_key: "",
                 textAlign: "center",
@@ -2162,7 +2170,7 @@ window.addEventListener('DOMContentLoaded', function() {
             }
         },
         cute_streaming: {
-            name: "🌸 かわいい配信用",
+            name: "🌸 Para transmisiones lindas",
             settings: {
                 gas_key: "",
                 textAlign: "center",
@@ -2208,7 +2216,7 @@ window.addEventListener('DOMContentLoaded', function() {
             }
         },
         dark_theme: {
-            name: "🌙 ダークテーマ",
+            name: "🌙 Tema oscuro",
             settings: {
                 gas_key: "",
                 textAlign: "center",
@@ -2254,7 +2262,7 @@ window.addEventListener('DOMContentLoaded', function() {
             }
         },
         rainbow: {
-            name: "🌈 レインボー",
+            name: "🌈 Arcoíris",
             settings: {
                 gas_key: "",
                 textAlign: "center",
@@ -2300,7 +2308,7 @@ window.addEventListener('DOMContentLoaded', function() {
             }
         },
         custom1: {
-            name: "🔧 カスタム１",
+            name: "🔧 Personalizado 1",
             settings: {
                 gas_key: "",
                 textAlign: "center",
@@ -2346,7 +2354,7 @@ window.addEventListener('DOMContentLoaded', function() {
             }
         },
         custom2: {
-            name: "🔧 カスタム２",
+            name: "🔧 Personalizado 2",
             settings: {
                 gas_key: "",
                 textAlign: "center",
@@ -2392,7 +2400,7 @@ window.addEventListener('DOMContentLoaded', function() {
             }
         },
         custom3: {
-            name: "🔧 カスタム３",
+            name: "🔧 Personalizado 3",
             settings: {
                 gas_key: "",
                 textAlign: "center",
@@ -2439,35 +2447,35 @@ window.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    // 現在選択中のプリセットを保存（初期化関数内で設定）
+    // 現在選択中のPreajustesを保存（初期化関数内で設定）
     let currentPreset = 'default';
     
-    // プリセット読み込み中フラグ（自動保存を一時停止するため）
+    // Preajustes読み込み中フラグ（自動保存を一時停止するため）
     let isLoadingPreset = false;
     
-    // プリセットを読み込む
+    // Preajustesを読み込む
     function loadPreset() {
         const presetSelect = document.getElementById('presetSelect');
         const selectedPreset = presetSelect.value;
         
         if (!selectedPreset) return;
         
-        console.log('プリセット切り替え開始:', selectedPreset);
+        console.log('Cambio de preajuste iniciado:', selectedPreset);
         
-        // プリセット読み込み中フラグを設定（自動保存を停止）
+        // Preajustes読み込み中フラグを設定（自動保存を停止）
         isLoadingPreset = true;
         
         // 「選択してください」が選ばれた場合は設定を適用してすぐに完了
         if (selectedPreset === 'default') {
-            console.log('「選択してください」プリセット処理開始');
+            console.log('Procesando preajuste "Selecciona"');
             
             // 設定状態を保存
             currentPreset = selectedPreset;
             try {
                 localStorage.setItem('selectedPreset', selectedPreset);
-                console.log('プリセット選択状態を保存:', selectedPreset);
+                console.log('Estado de selección de preajuste guardado:', selectedPreset);
             } catch (error) {
-                console.error('localStorage保存エラー:', error);
+                console.error('Error al guardar en localStorage:', error);
             }
             
             // まず保存済みの設定があるかチェック
@@ -2476,15 +2484,15 @@ window.addEventListener('DOMContentLoaded', function() {
             
             if (savedPresets[selectedPreset] && savedPresets[selectedPreset].settings) {
                 settingsToApply = savedPresets[selectedPreset].settings;
-                console.log('保存済み「選択してください」プリセットを使用');
-                console.log('保存済み設定の一部:', {
+                console.log('Usando preajuste "Selecciona" guardado');
+                console.log('Parte de la configuración guardada:', {
                     bgcolor: settingsToApply.bgcolor,
                     trans: settingsToApply.trans,
                     speech_text_font_selector: settingsToApply.speech_text_font_selector
                 });
             } else {
                 settingsToApply = defaultPresets.default.settings;
-                console.log('デフォルト「選択してください」プリセットを使用（保存済み設定なし）');
+                console.log('Usando preajuste "Selecciona" por defecto (sin configuración guardada)');
             }
             
             // 設定を適用
@@ -2510,11 +2518,11 @@ window.addEventListener('DOMContentLoaded', function() {
                 if (settingsToApply.translation_method) {
                     // 保存済み設定に翻訳方法がある場合
                     methodToApply = settingsToApply.translation_method;
-                    console.log('翻訳方法を保存済み設定から復元:', methodToApply);
+                    console.log('Método de traducción restaurado desde configuración guardada:', methodToApply);
                 } else {
                     // 設定がない場合はlocalStorageから取得
                     methodToApply = loadTranslationMethodFromStorage();
-                    console.log('翻訳方法をlocalStorageから復元:', methodToApply);
+                    console.log('Método de traducción restaurado desde localStorage:', methodToApply);
                 }
                 
                 // ラジオボタンと注意書きを設定
@@ -2536,10 +2544,10 @@ window.addEventListener('DOMContentLoaded', function() {
             updateOptionValues(false);
             setTimeout(() => {
                 applyAllSettings();
-                selectFont(); // フォント状態も更新
-                initializeSystemFontFields(); // PC内フォントと直接入力フィールドの状態を復元
-                updateVisualSettings(); // スライドバー数値表示を更新
-                applyFrameHeight(); // frame_height（設定画面表示/非表示）を適用
+                selectFont(); // Fuente状態も更新
+                initializeSystemFontFields(); // PC内Fuenteと直接入力フィールドの状態を復元
+                updateVisualSettings(); // スライドバー数値Mostrarを更新
+                applyFrameHeight(); // frame_height（設定画面Mostrar/非Mostrar）を適用
             }, 100);
             
             // フラグをリセット
@@ -2547,10 +2555,10 @@ window.addEventListener('DOMContentLoaded', function() {
             updatePageTitle();
             
             // 強制的に自動保存を実行
-            console.log('「選択してください」プリセット - 強制自動保存実行');
+            console.log('Preajuste "Selecciona" - Ejecutando guardado automático forzado');
             setTimeout(saveCurrentPreset, 200);
             
-            console.log('「選択してください」プリセット処理完了');
+            console.log('Procesamiento de preajuste "Selecciona" completado');
             return;
         }
         
@@ -2558,27 +2566,27 @@ window.addEventListener('DOMContentLoaded', function() {
         currentPreset = selectedPreset;
         try {
             localStorage.setItem('selectedPreset', selectedPreset);
-            console.log('プリセット選択状態を保存:', selectedPreset);
-            console.log('保存確認:', localStorage.getItem('selectedPreset'));
+            console.log('Estado de selección de preajuste guardado:', selectedPreset);
+            console.log('Verificación de guardado:', localStorage.getItem('selectedPreset'));
         } catch (error) {
-            console.error('localStorage保存エラー:', error);
+            console.error('Error al guardar en localStorage:', error);
         }
         
         let presetData = null;
         
-        // まず保存されたプリセットをチェック（優先）
+        // まず保存されたPreajustesをチェック（優先）
         const savedPresets = JSON.parse(localStorage.jimakuChan_presets || '{}');
         if (savedPresets[selectedPreset]) {
             presetData = savedPresets[selectedPreset].settings;
-            console.log('保存済みプリセットデータを使用:', selectedPreset);
+            console.log('Usando datos de preajuste guardado:', selectedPreset);
         } else if (defaultPresets[selectedPreset]) {
-            // 保存されたデータがない場合のみデフォルトプリセットを使用
+            // 保存されたデータがない場合のみデフォルトPreajustesを使用
             presetData = defaultPresets[selectedPreset].settings;
-            console.log('デフォルトプリセットデータを使用:', selectedPreset);
+            console.log('Usando datos de preajuste por defecto:', selectedPreset);
         }
         
         if (presetData) {
-            console.log('プリセットデータ適用中:', Object.keys(presetData).length + '個の設定');
+            console.log('Aplicando datos de preajuste:', Object.keys(presetData).length + ' configuraciones');
             
             // 設定を適用
             for (const key in presetData) {
@@ -2601,13 +2609,13 @@ window.addEventListener('DOMContentLoaded', function() {
                 let methodToApply = 'chrome'; // デフォルト
                 
                 if (presetData.translation_method) {
-                    // プリセットに翻訳方法の設定がある場合はそれを優先
+                    // Preajustesに翻訳方法の設定がある場合はそれを優先
                     methodToApply = presetData.translation_method;
-                    console.log('翻訳方法をプリセットから復元:', methodToApply);
+                    console.log('Método de traducción restaurado desde preajuste:', methodToApply);
                 } else {
-                    // プリセットに設定がない場合はlocalStorageから取得
+                    // Preajustesに設定がない場合はlocalStorageから取得
                     methodToApply = loadTranslationMethodFromStorage();
-                    console.log('翻訳方法をlocalStorageから復元:', methodToApply);
+                    console.log('Método de traducción restaurado desde localStorage:', methodToApply);
                 }
                 
                 // ラジオボタンと注意書きを設定
@@ -2625,30 +2633,30 @@ window.addEventListener('DOMContentLoaded', function() {
                 saveTranslationMethodToStorage(methodToApply);
             }
             
-            // フォント設定の特別処理
+            // Fuente設定の特別処理
             selectFont();
             
-            // 表示を更新（スライダー値表示など）
+            // Mostrarを更新（スライダー値Mostrarなど）
             updateVisualSettings();
             
-            // frame_height（設定画面表示/非表示）を適用
+            // frame_height（設定画面Mostrar/非Mostrar）を適用
             applyFrameHeight();
             
             // 強制リロードによる確実な更新
-            console.log('プリセット強制更新を実行中...');
+            console.log('Ejecutando actualización forzada de preajuste...');
             
             var iframe = document.getElementById('asr_frame');
             
             // 設定を適用
             updateOptionValues(false);
             
-            // 複数回のリロード試行で確実性を向上
+            // 複数回のリロード試行で確実性を向Arriba
             var reloadAttempts = 0;
             var maxAttempts = 3;
             
             function attemptReload() {
                 reloadAttempts++;
-                console.log(`リロード試行 ${reloadAttempts}/${maxAttempts}`);
+                console.log(`Intento de recarga ${reloadAttempts}/${maxAttempts}`);
                 
                 // iframeを強制リロード
                 var currentSrc = iframe.src;
@@ -2659,62 +2667,62 @@ window.addEventListener('DOMContentLoaded', function() {
                     
                     // 読み込み完了を待機
                     iframe.onload = function() {
-                        console.log(`リロード完了 (${reloadAttempts}/${maxAttempts})`);
+                        console.log(`Recarga completada (${reloadAttempts}/${maxAttempts})`);
                         
                         setTimeout(function() {
                             try {
                                 if (iframe.contentWindow && iframe.contentWindow.document) {
-                                    console.log('DOM直接更新実行中...');
+                                    console.log('Ejecutando actualización directa del DOM...');
                                     var settingsApplied = applyAllSettings();
                                     
                                     if (settingsApplied || reloadAttempts >= maxAttempts) {
-                                        console.log('プリセット更新完了');
+                                        console.log('Actualización de preajuste completada');
                                         isLoadingPreset = false;
                                         
                                         // ページタイトルを更新
                                         updatePageTitle();
                                         
-                                        // 通常のonloadハンドラーに戻す
+                                        // 通常のonloadハンドラーにRestaurar
                                         iframe.onload = function() {
-                                            console.log('iframe読み込み完了');
+                                            console.log('iframe cargado completamente');
                                             setTimeout(applyInitialSettings, 300);
                                         };
                                     } else {
-                                        console.log('設定適用失敗 - 再試行中...');
+                                        console.log('Error al aplicar configuración - Reintentando...');
                                         setTimeout(attemptReload, 500);
                                     }
                                 } else {
                                     if (reloadAttempts < maxAttempts) {
-                                        console.log('DOM未準備 - 再試行中...');
+                                        console.log('DOM no preparado - Reintentando...');
                                         setTimeout(attemptReload, 500);
                                     } else {
-                                        console.log('最大試行回数に到達 - 終了');
+                                        console.log('Alcanzado el número máximo de intentos - Finalizando');
                                         isLoadingPreset = false;
                                         
                                         // ページタイトルを更新
                                         updatePageTitle();
                                         
-                                        // 通常のonloadハンドラーに戻す
+                                        // 通常のonloadハンドラーにRestaurar
                                         iframe.onload = function() {
-                                            console.log('iframe読み込み完了');
+                                            console.log('iframe cargado completamente');
                                             setTimeout(applyInitialSettings, 300);
                                         };
                                     }
                                 }
                             } catch (error) {
-                                console.error('プリセット適用エラー:', error);
+                                console.error('Error al aplicar preajuste:', error);
                                 if (reloadAttempts < maxAttempts) {
                                     setTimeout(attemptReload, 500);
                                 } else {
-                                    console.log('エラーにより処理終了');
+                                    console.log('Finalizando debido a error');
                                     isLoadingPreset = false;
                                     
                                     // ページタイトルを更新
                                     updatePageTitle();
                                     
-                                    // 通常のonloadハンドラーに戻す
+                                    // 通常のonloadハンドラーにRestaurar
                                     iframe.onload = function() {
-                                        console.log('iframe読み込み完了');
+                                        console.log('iframe cargado completamente');
                                         setTimeout(applyInitialSettings, 300);
                                     };
                                 }
@@ -2727,9 +2735,9 @@ window.addEventListener('DOMContentLoaded', function() {
             // 初回試行を開始
             attemptReload();
             
-            console.log('プリセット「' + selectedPreset + '」を読み込み完了');
+            console.log('Preajuste "' + selectedPreset + '" cargado completamente');
         } else {
-            console.error('プリセットデータが見つかりません:', selectedPreset);
+            console.error('Datos de preajuste no encontrados:', selectedPreset);
             isLoadingPreset = false;
             
             // ページタイトルを更新
@@ -2737,17 +2745,17 @@ window.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // 現在のプリセットに設定を自動保存
+    // 現在のPreajustesに設定を自動保存
     function saveCurrentPreset() {
-        console.log('saveCurrentPreset呼び出し - currentPreset:', currentPreset, 'isLoadingPreset:', isLoadingPreset);
+        console.log('saveCurrentPreset llamado - currentPreset:', currentPreset, 'isLoadingPreset:', isLoadingPreset);
         
         if (!currentPreset || isLoadingPreset) {
-            if (isLoadingPreset) console.log('プリセット読み込み中のため自動保存をスキップ');
-            if (!currentPreset) console.log('現在のプリセットが未設定のため自動保存をスキップ');
+            if (isLoadingPreset) console.log('Omitiendo guardado automático - Cargando preajuste');
+            if (!currentPreset) console.log('Omitiendo guardado automático - Preajuste actual no configurado');
             return;
         }
         
-        console.log('自動保存開始 - プリセット:', currentPreset);
+        console.log('Iniciando guardado automático - Preajuste:', currentPreset);
         
         // 現在の設定を取得
         const currentSettings = {};
@@ -2771,7 +2779,7 @@ window.addEventListener('DOMContentLoaded', function() {
         currentSettings.anti_sexual = document.getElementById('anti_sexual').checked;
         currentSettings.translation_method = getTranslationMethod();
         
-        // プリセットを保存
+        // Preajustesを保存
         const savedPresets = JSON.parse(localStorage.jimakuChan_presets || '{}');
         savedPresets[currentPreset] = {
             name: defaultPresets[currentPreset] ? defaultPresets[currentPreset].name : currentPreset,
@@ -2780,8 +2788,8 @@ window.addEventListener('DOMContentLoaded', function() {
         };
         
         localStorage.jimakuChan_presets = JSON.stringify(savedPresets);
-        console.log('プリセット「' + currentPreset + '」に自動保存しました');
-        console.log('保存された設定の一部:', {
+        console.log('Preajuste "' + currentPreset + '" guardado automáticamente');
+        console.log('Parte de la configuración guardada:', {
             bgcolor: currentSettings.bgcolor,
             size1: currentSettings.size1,
             color1: currentSettings.color1,
@@ -2793,16 +2801,16 @@ window.addEventListener('DOMContentLoaded', function() {
         // 保存確認のため、localStorageから読み直し
         const verifyPresets = JSON.parse(localStorage.jimakuChan_presets || '{}');
         if (verifyPresets[currentPreset]) {
-            console.log('保存確認OK - プリセット「' + currentPreset + '」が存在します');
+            console.log('Verificación de guardado OK - Preajuste "' + currentPreset + '" existe');
         } else {
-            console.error('保存確認NG - プリセット「' + currentPreset + '」が見つかりません');
+            console.error('Verificación de guardado NG - Preajuste "' + currentPreset + '" no encontrado');
         }
     }
     
-    // デバッグ用：保存されたプリセットを確認
+    // デバッグ用：保存されたPreajustesを確認
     function debugPresets() {
         const savedPresets = JSON.parse(localStorage.jimakuChan_presets || '{}');
-        console.log('=== 保存されたプリセット一覧 ===');
+        console.log('=== Lista de preajustes guardados ===');
         for (const [key, value] of Object.entries(savedPresets)) {
             console.log(`${key}:`, {
                 name: value.name,
@@ -2816,24 +2824,24 @@ window.addEventListener('DOMContentLoaded', function() {
                 }
             });
         }
-        console.log('=== 現在のプリセット ===', currentPreset);
+        console.log('=== Preajuste actual ===', currentPreset);
     }
     
     // グローバルに公開（ブラウザコンソールから実行可能）
     window.debugPresets = debugPresets;
     
-    // プリセット選択状態をデバッグする関数
+    // Preajustes選択状態をデバッグする関数
     function debugPresetSelection() {
-        console.log('=== プリセット選択状態デバッグ ===');
-        console.log('currentPreset変数:', currentPreset);
+        console.log('=== Depuración de selección de preajuste ===');
+        console.log('Variable currentPreset:', currentPreset);
         console.log('localStorage.selectedPreset:', localStorage.getItem('selectedPreset'));
         
         const presetSelect = document.getElementById('presetSelect');
         if (presetSelect) {
-            console.log('プルダウンの現在値:', presetSelect.value);
-            console.log('プルダウンの選択されたオプション:', presetSelect.options[presetSelect.selectedIndex]?.text);
+            console.log('Valor actual del menú desplegable:', presetSelect.value);
+            console.log('Opción seleccionada en el menú desplegable:', presetSelect.options[presetSelect.selectedIndex]?.text);
         } else {
-            console.log('プルダウンが見つかりません');
+            console.log('Menú desplegable no encontrado');
         }
     }
     
@@ -2841,13 +2849,13 @@ window.addEventListener('DOMContentLoaded', function() {
     
     // 既存ユーザー設定の自動移行関数
     function migrateExistingUserSettings() {
-        console.log('=== 既存ユーザー設定移行チェック開始 ===');
+        console.log('=== Iniciando verificación de migración de configuración de usuario existente ===');
         
         // 旧設定の存在チェック（最初に確認）
         const oldConfig = localStorage.getItem('jimakuChan_config');
         const migrationFlag = localStorage.getItem('jimakuChan_migrated');
         
-        console.log('移行状況確認:', {
+        console.log('Estado de migración:', {
             oldConfig: !!oldConfig,
             migrationFlag: migrationFlag,
             oldConfigLength: oldConfig ? oldConfig.length : 0
@@ -2855,44 +2863,44 @@ window.addEventListener('DOMContentLoaded', function() {
         
         // 旧設定がない場合の処理
         if (!oldConfig) {
-            console.log('旧設定なし - 移行不要');
+            console.log('Sin configuración antigua - Migración no necesaria');
             if (migrationFlag !== 'true') {
                 localStorage.setItem('jimakuChan_migrated', 'true');
-                console.log('新規ユーザーとして移行フラグ設定');
+                console.log('Bandera de migración establecida para nuevo usuario');
             }
             return;
         }
         
         // 移行済みフラグがあるが旧設定も残っている場合（移行失敗の可能性）
         if (migrationFlag === 'true' && oldConfig) {
-            console.warn('⚠️ 移行済みフラグがあるが旧設定が残存 - 再移行を実行');
-            console.log('この状況は移行失敗の可能性があります');
+            console.warn('⚠️ Bandera de migración presente pero configuración antigua aún existe - Ejecutando remigración');
+            console.log('Esta situación puede indicar una migración fallida');
         }
         
         try {
             const oldSettings = JSON.parse(oldConfig);
-            console.log('旧設定を発見:', Object.keys(oldSettings).length + '項目');
-            console.log('旧設定サンプル:', {
+            console.log('Configuración antigua encontrada:', Object.keys(oldSettings).length + ' ítems');
+            console.log('Muestra de configuración antigua:', {
                 bgcolor: oldSettings.bgcolor,
                 size1: oldSettings.size1,
                 recog: oldSettings.recog,
                 trans: oldSettings.trans
             });
             
-            // 「選択してください」プリセットの既存チェック
+            // 「選択してください」Preajustesの既存チェック
             const savedPresets = JSON.parse(localStorage.getItem('jimakuChan_presets') || '{}');
             
             if (savedPresets['default'] && savedPresets['default'].settings) {
-                console.log('「選択してください」プリセット既存 - 旧設定移行をスキップ');
+                console.log('Preajuste "Selecciona" ya existe - Omitiendo migración de configuración antigua');
                 // 移行済みフラグを設定
                 localStorage.setItem('jimakuChan_migrated', 'true');
                 return;
             }
             
-            // 旧設定を「選択してください」プリセットに移行
-            console.log('旧設定を「選択してください」プリセットに移行開始');
+            // 旧設定を「選択してください」Preajustesに移行
+            console.log('Iniciando migración de configuración antigua a preajuste "Selecciona"');
             
-            // デフォルトプリセットの設定項目に合わせて移行
+            // デフォルトPreajustesの設定項目に合わせて移行
             const migratedSettings = {};
             
             // 設定項目のマッピング（config_valuesと完全一致）
@@ -2910,24 +2918,24 @@ window.addEventListener('DOMContentLoaded', function() {
             ];
             
             // 旧設定から新設定にコピー（詳細ログ付き）
-            console.log('=== 設定項目別移行状況 ===');
+            console.log('=== Estado de migración por ítem de configuración ===');
             let migratedCount = 0;
             let skippedCount = 0;
             
             settingKeys.forEach(key => {
                 if (oldSettings.hasOwnProperty(key)) {
                     migratedSettings[key] = oldSettings[key];
-                    console.log(`✅ ${key}: "${oldSettings[key]}" -> 移行`);
+                    console.log(`✅ ${key}: "${oldSettings[key]}" -> Migrado`);
                     migratedCount++;
                 } else {
-                    console.log(`⚠️ ${key}: 旧設定に存在しない`);
+                    console.log(`⚠️ ${key}: No existe en configuración antigua`);
                     skippedCount++;
                 }
             });
             
-            console.log(`移行完了: ${migratedCount}項目, スキップ: ${skippedCount}項目`);
+            console.log(`Migración completada: ${migratedCount} ítems, Omitidos: ${skippedCount} ítems`);
             
-            // フォント設定の移行（旧システム対応）
+            // Fuente設定の移行（旧システム対応）
             if (oldSettings.speech_text_font && !migratedSettings.speech_text_font_selector) {
                 migratedSettings.speech_text_font_selector = oldSettings.speech_text_font;
             }
@@ -2942,7 +2950,7 @@ window.addEventListener('DOMContentLoaded', function() {
             }
             
             // デフォルト値で不足項目を補完
-            console.log('=== デフォルト値補完処理 ===');
+            console.log('=== Procesamiento de complemento con valores por defecto ===');
             const defaultSettings = defaultPresets['default']?.settings || {};
             
             // 基本的なデフォルト値を設定
@@ -2981,25 +2989,25 @@ window.addEventListener('DOMContentLoaded', function() {
                     // まずdefaultPresetsから試す
                     if (defaultSettings.hasOwnProperty(key)) {
                         migratedSettings[key] = defaultSettings[key];
-                        console.log(`📝 ${key}: デフォルトプリセットから補完 -> "${defaultSettings[key]}"`);
+                        console.log(`📝 ${key}: Complementado desde preajuste por defecto -> "${defaultSettings[key]}"`);
                     }
                     // 次にbasicDefaultsから試す
                     else if (basicDefaults.hasOwnProperty(key)) {
                         migratedSettings[key] = basicDefaults[key];
-                        console.log(`📝 ${key}: 基本デフォルト値で補完 -> "${basicDefaults[key]}"`);
+                        console.log(`📝 ${key}: Complementado con valor por defecto básico -> "${basicDefaults[key]}"`);
                     }
                     else {
-                        console.log(`❌ ${key}: デフォルト値なし`);
+                        console.log(`❌ ${key}: Sin valor por defecto`);
                     }
                     defaultCount++;
                 }
             });
             
-            console.log(`デフォルト値補完: ${defaultCount}項目`);
+            console.log(`Complemento con valores por defecto: ${defaultCount} ítems`);
             
-            // 「選択してください」プリセットとして保存
+            // 「選択してください」Preajustesとして保存
             savedPresets['default'] = {
-                name: '選択してください',
+                name: 'Selecciona',
                 settings: migratedSettings,
                 lastModified: new Date().toISOString(),
                 migratedFrom: 'jimakuChan_config'
@@ -3008,42 +3016,42 @@ window.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem('jimakuChan_presets', JSON.stringify(savedPresets));
             
             // 移行後検証：実際に保存されたか確認
-            console.log('=== 移行後検証 ===');
+            console.log('=== Verificación posterior a la migración ===');
             const verifyPresets = JSON.parse(localStorage.getItem('jimakuChan_presets') || '{}');
             if (verifyPresets.default && verifyPresets.default.settings) {
-                console.log('✅ 「選択してください」プリセット保存確認OK');
-                console.log('保存された設定項目数:', Object.keys(verifyPresets.default.settings).length);
+                console.log('✅ Verificación de guardado de preajuste "Selecciona" OK');
+                console.log('Número de ítems de configuración guardados:', Object.keys(verifyPresets.default.settings).length);
                 
                 // 重要な設定項目を個別確認
                 const verifySettings = verifyPresets.default.settings;
                 const criticalKeys = ['bgcolor', 'size1', 'recog', 'gas_key', 'timer'];
-                console.log('=== 重要設定項目確認 ===');
+                console.log('=== Verificación de ítems de configuración importantes ===');
                 criticalKeys.forEach(key => {
                     console.log(`${key}: "${verifySettings[key] || 'undefined'}"`);
                 });
                 
             } else {
-                console.error('❌ 「選択してください」プリセット保存失敗');
+                console.error('❌ Error al guardar preajuste "Selecciona"');
             }
             
-            console.log('✅ 設定移行完了');
-            console.log('移行された設定項目数:', Object.keys(migratedSettings).length);
+            console.log('✅ Migración de configuración completada');
+            console.log('Número de ítems de configuración migrados:', Object.keys(migratedSettings).length);
             
             // 移行成功時のみフラグを設定
             localStorage.setItem('jimakuChan_migrated', 'true');
             
             // 旧設定をバックアップ用にリネーム（削除はしない）
             localStorage.setItem('jimakuChan_config_backup', oldConfig);
-            console.log('旧設定をバックアップとして保存: jimakuChan_config_backup');
+            console.log('Configuración antigua guardada como respaldo: jimakuChan_config_backup');
             
             // 移行完了後、旧設定を削除（バックアップは保持）
             localStorage.removeItem('jimakuChan_config');
-            console.log('✅ 旧設定(jimakuChan_config)を削除（移行完了）');
-            console.log('✅ 全設定はjimakuChan_presetsで管理されるようになりました');
+            console.log('✅ Configuración antigua (jimakuChan_config) eliminada (migración completada)');
+            console.log('✅ Toda la configuración ahora se gestiona mediante jimakuChan_presets');
             
         } catch (error) {
-            console.error('❌ 設定移行エラー:', error);
-            console.error('移行に失敗しました。旧設定とフラグは保持されます');
+            console.error('❌ Error en migración de configuración:', error);
+            console.error('Migración fallida. La configuración antigua y la bandera se mantienen');
             // エラー時は移行済みフラグを設定しない（再試行可能にする）
             // localStorage.setItem('jimakuChan_migrated', 'true'); // この行を削除
         }
@@ -3051,23 +3059,23 @@ window.addEventListener('DOMContentLoaded', function() {
     
     // デバッグ用：移行状況確認関数
     function debugMigrationStatus() {
-        console.log('=== 移行状況デバッグ ===');
+        console.log('=== Depuración de estado de migración ===');
         const oldConfig = localStorage.getItem('jimakuChan_config');
         const migrationFlag = localStorage.getItem('jimakuChan_migrated');
         const backup = localStorage.getItem('jimakuChan_config_backup');
         const presets = localStorage.getItem('jimakuChan_presets');
         
-        console.log('旧設定(jimakuChan_config):', !!oldConfig, oldConfig ? oldConfig.length + '文字' : 'なし');
-        console.log('移行フラグ(jimakuChan_migrated):', migrationFlag);
-        console.log('バックアップ(jimakuChan_config_backup):', !!backup);
-        console.log('プリセット(jimakuChan_presets):', !!presets);
+        console.log('Configuración antigua (jimakuChan_config):', !!oldConfig, oldConfig ? oldConfig.length + 'caracteres' : 'Ninguno');
+        console.log('Bandera de migración (jimakuChan_migrated):', migrationFlag);
+        console.log('Respaldo (jimakuChan_config_backup):', !!backup);
+        console.log('Preajustes (jimakuChan_presets):', !!presets);
         
         if (presets) {
             const presetsData = JSON.parse(presets);
-            console.log('「選択してください」プリセット:', !!presetsData.default);
+            console.log('Preajuste "Selecciona":', !!presetsData.default);
             if (presetsData.default) {
-                console.log('移行元情報:', presetsData.default.migratedFrom || 'なし');
-                console.log('設定項目数:', Object.keys(presetsData.default.settings || {}).length);
+                console.log('Información de origen de migración:', presetsData.default.migratedFrom || 'Ninguno');
+                console.log('Número de ítems de configuración:', Object.keys(presetsData.default.settings || {}).length);
             }
         }
         
@@ -3084,23 +3092,23 @@ window.addEventListener('DOMContentLoaded', function() {
     
     // 強制再移行関数（トラブルシューティング用）
     function forceMigration() {
-        console.log('=== 強制再移行実行 ===');
+        console.log('=== Ejecutando remigración forzada ===');
         localStorage.removeItem('jimakuChan_migrated');
-        console.log('移行フラグを削除しました');
-        console.log('注意：この操作により、旧設定(jimakuChan_config)が存在する場合、');
-        console.log('「選択してください」プリセットに移行され、旧設定は削除されます');
+        console.log('Bandera de migración eliminada');
+        console.log('Precaución: Esta operación migrará la configuración antigua (jimakuChan_config)');
+        console.log('al preajuste "Selecciona" si existe, y la configuración antigua será eliminada');
         migrateExistingUserSettings();
         
         // 移行後、ページを再読み込みして新しい設定を反映
         setTimeout(() => {
-            console.log('移行完了後、ページを再読み込みします...');
+            console.log('Recargando página después de la migración...');
             location.reload();
         }, 1000);
     }
     
     window.forceMigration = forceMigration;
     
-    // frame_height（設定画面表示/非表示）を適用する関数
+    // frame_height（設定画面Mostrar/非Mostrar）を適用する関数
     function applyFrameHeight() {
         const frameHeightElement = document.getElementById('frame_height');
         const iframe = document.getElementById('asr_frame');
@@ -3110,7 +3118,7 @@ window.addEventListener('DOMContentLoaded', function() {
             const frameHeight = frameHeightElement.value || '30%';
             iframe.style.height = frameHeight;
             
-            console.log('frame_height適用:', frameHeight);
+            console.log('frame_height aplicado:', frameHeight);
             
             if (frameHeight === '100%') {
                 body.style.overflow = 'hidden';  // ページスクロールを禁止する
@@ -3120,22 +3128,22 @@ window.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // プリセット初期化（ページ読み込み時に実行）
+    // Preajustes初期化（ページ読み込み時に実行）
     function initializePresets() {
-        console.log('=== プリセット初期化開始 ===');
+        console.log('=== Inicialización de preajustes iniciada ===');
         const presetSelect = document.getElementById('presetSelect');
         
         if (!presetSelect) {
-            console.error('プリセットセレクトボックスが見つかりません');
+            console.error('Cuadro de selección de preajustes no encontrado');
             return;
         }
         
         // 既存ユーザー設定の自動移行処理
         migrateExistingUserSettings();
         
-        // localStorageから保存されたプリセット選択状態を復元
+        // localStorageから保存されたPreajustes選択状態を復元
         const savedSelectedPreset = localStorage.getItem('selectedPreset');
-        console.log('保存されたプリセット選択状態:', savedSelectedPreset);
+        console.log('Estado de selección de preajuste guardado:', savedSelectedPreset);
         
         if (savedSelectedPreset) {
             currentPreset = savedSelectedPreset;
@@ -3143,25 +3151,25 @@ window.addEventListener('DOMContentLoaded', function() {
             currentPreset = 'default'; // デフォルト値
         }
         
-        console.log('復元されたcurrentPreset:', currentPreset);
+        console.log('currentPreset restaurado:', currentPreset);
         
         // プルダウンメニューに値を設定
         presetSelect.value = currentPreset;
         
         // プルダウンの値が正しく設定されたか確認
-        console.log('プルダウン設定後の値:', presetSelect.value);
+        console.log('Valor después de configurar el menú desplegable:', presetSelect.value);
         
         // 値が正しく設定されていない場合の対処
         if (presetSelect.value !== currentPreset) {
-            console.warn('プルダウン設定に失敗、手動で設定:', currentPreset);
+            console.warn('Error al configurar menú desplegable, configurando manualmente:', currentPreset);
             // オプションが存在するか確認
             const options = Array.from(presetSelect.options);
             const targetOption = options.find(option => option.value === currentPreset);
             if (targetOption) {
                 targetOption.selected = true;
-                console.log('手動設定完了');
+                console.log('Configuración manual completada');
             } else {
-                console.error('指定されたプリセットが見つかりません:', currentPreset);
+                console.error('Preajuste especificado no encontrado:', currentPreset);
                 currentPreset = 'default';
                 presetSelect.value = currentPreset;
             }
@@ -3169,11 +3177,11 @@ window.addEventListener('DOMContentLoaded', function() {
         
         // 「選択してください」の場合は事前に保存済み設定を復元
         if (currentPreset === 'default') {
-            console.log('「選択してください」の初期化 - 保存済み設定をチェック');
+            console.log('Inicialización de "Selecciona" - Verificando configuración guardada');
             const savedPresets = JSON.parse(localStorage.jimakuChan_presets || '{}');
             
             if (savedPresets['default'] && savedPresets['default'].settings) {
-                console.log('保存済み「選択してください」設定を事前復元');
+                console.log('Restaurando previamente configuración "Selecciona" guardada');
                 const savedSettings = savedPresets['default'].settings;
                 
                 // 設定をUIに事前適用
@@ -3190,18 +3198,18 @@ window.addEventListener('DOMContentLoaded', function() {
             }
         }
         
-        // 少し遅延してプリセットを適用（DOM構築完了を待つ）
+        // 少し遅延してPreajustesを適用（DOM構築完了を待つ）
         setTimeout(function() {
-            console.log('initializePresets内でloadPreset実行');
+            console.log('Ejecutando loadPreset dentro de initializePresets');
             loadPreset();
         }, 50);
     }
     
-    // 表示設定を更新（スライダー数値表示）
+    // Mostrar設定を更新（スライダー数値Mostrar）
     function updateVisualSettings() {
-        console.log('スライドバー数値表示を更新中...');
+        console.log('Actualizando visualización de valores de deslizadores...');
         
-        // 各スライダーの値表示を更新
+        // 各スライダーの値Mostrarを更新
         for (let i = 1; i <= 4; i++) {
             const sizeElement = document.getElementById('size' + i);
             const weightElement = document.getElementById('weight' + i);
@@ -3213,35 +3221,35 @@ window.addEventListener('DOMContentLoaded', function() {
             
             if (sizeElement && sizeViewElement) {
                 sizeViewElement.innerHTML = sizeElement.value;
-                console.log('size' + i + '表示を更新:', sizeElement.value);
+                console.log('Visualización de size' + i + ' actualizada:', sizeElement.value);
             }
             if (weightElement && weightViewElement) {
                 weightViewElement.innerHTML = weightElement.value;
-                console.log('weight' + i + '表示を更新:', weightElement.value);
+                console.log('Visualización de weight' + i + ' actualizada:', weightElement.value);
             }
             if (stWidthElement && stSizeViewElement) {
                 stSizeViewElement.innerHTML = stWidthElement.value;
-                console.log('st_width' + i + '表示を更新:', stWidthElement.value);
+                console.log('Visualización de st_width' + i + ' actualizada:', stWidthElement.value);
             }
         }
         
-        // 行間設定の表示を更新
+        // 行間設定のMostrarを更新
         for (let i = 1; i <= 3; i++) {
             const lineSpacingElement = document.getElementById('line_spacing_' + i);
             const lineSpacingValueElement = document.getElementById('line_spacing_' + i + '_value');
             
             if (lineSpacingElement && lineSpacingValueElement) {
                 lineSpacingValueElement.textContent = lineSpacingElement.value + 'px';
-                console.log('line_spacing_' + i + '表示を更新:', lineSpacingElement.value + 'px');
+                console.log('Visualización de line_spacing_' + i + ' actualizada:', lineSpacingElement.value + 'px');
             }
         }
         
-        console.log('スライドバー数値表示更新完了');
+        console.log('Actualización de visualización de valores de deslizadores completada');
     }
 </script>
 
 <!-- # 音声レベル監視機能　############################ -->
-<!-- 音量表示機能は削除されました（音声認識デバイスとの不一致によるユーザー混乱防止のため） -->
+<!-- 音量Mostrar機能は削除されました（音声認識デバイスとの不一致によるユーザー混乱防止のため） -->
 <script>
     // 音声レベル監視用の変数（無効化）
     // let audioContext = null;
@@ -3251,8 +3259,8 @@ window.addEventListener('DOMContentLoaded', function() {
     
     // Web Speech APIはデバイス選択をサポートしないため、この機能は無効化
     function refreshAudioDevices() {
-        console.log('Web Speech APIの制限により、音声デバイス選択は使用できません');
-        console.log('既定の音声入力デバイスのみ使用されます');
+        console.log('Debido a las limitaciones de Web Speech API, la selección de dispositivos de audio no está disponible');
+        console.log('Solo se utilizará el dispositivo de entrada de audio predeterminado');
         // 音声レベル監視は削除されました（音声認識デバイスとの不一致によるユーザー混乱防止のため）
         // startAudioLevelMonitoring();
     }
@@ -3260,7 +3268,7 @@ window.addEventListener('DOMContentLoaded', function() {
     // 音声レベル監視を開始（既定デバイスのみ使用）
     async function startAudioLevelMonitoring() {
         // 音声レベル監視は削除されました（音声認識デバイスとの不一致によるユーザー混乱防止のため）
-        console.log('音声レベル監視機能は無効化されています');
+        console.log('La función de monitoreo de nivel de audio está deshabilitada');
         /*
         try {
             // Web Speech APIの制限により、常に既定デバイスを使用
@@ -3288,7 +3296,7 @@ window.addEventListener('DOMContentLoaded', function() {
             updateAudioLevel();
             
         } catch (error) {
-            console.error('音声レベル監視の開始に失敗:', error);
+            console.error('Error al iniciar el monitoreo de nivel de audio:', error);
         }
         */
     }
@@ -3296,7 +3304,7 @@ window.addEventListener('DOMContentLoaded', function() {
     // 音声レベル監視を停止
     function stopAudioLevelMonitoring() {
         // 音声レベル監視は削除されました（音声認識デバイスとの不一致によるユーザー混乱防止のため）
-        console.log('音声レベル監視停止機能は無効化されています');
+        console.log('La función de detener el monitoreo de nivel de audio está deshabilitada');
         /*
         if (microphone) {
             microphone.disconnect();
@@ -3338,7 +3346,7 @@ window.addEventListener('DOMContentLoaded', function() {
     
     // Web Speech APIの制限により、デバイス選択機能は無効化
     document.addEventListener('DOMContentLoaded', function() {
-        // Font Access API対応状況をチェックして表示（無効化）
+        // Font Access API対応状況をチェックしてMostrar（無効化）
         // checkFontAPIStatus();
         
         // 音声レベル監視は削除されました（音声認識デバイスとの不一致によるユーザー混乱防止のため）
@@ -3347,10 +3355,10 @@ window.addEventListener('DOMContentLoaded', function() {
         // メッセージリスナーを確実に登録
         setupMessageListener();
         
-        // システムフォント選択メニューを初期化
+        // システムFuente選択メニューを初期化
         setTimeout(initializeFontSelectors, 100);
         
-        // プリセット初期化（保存済み設定復元）
+        // Preajustes初期化（保存済み設定復元）
         setTimeout(initializePresets, 200);
         
         // DOM読み込み完了後に設定を確実に反映
@@ -3361,13 +3369,13 @@ window.addEventListener('DOMContentLoaded', function() {
     });
 </script>
 
-<!-- # 翻訳回数取得　############################ -->
+<!-- # Contador de traducciones取得　############################ -->
 <script>
     function getTranslationCount() {
         var iframe = document.getElementById('asr_frame');
         var transCount = iframe.contentWindow.document.getElementById('translationCount').innerHTML;
         if(transCount == ''){
-            transCount = '[ココに回数出るよ！]';
+            transCount = '[¡Aquí aparecerá el número de veces!]';
         }
         return transCount;
     }
@@ -3385,7 +3393,7 @@ window.addEventListener('DOMContentLoaded', function() {
         var iframe = document.getElementById('asr_frame');
         var body = document.body;
 
-        // ページのスクロール位置を一番上に戻す
+        // ページのスクロールPosiciónを一番ArribaにRestaurar
         window.scrollTo(0, 0);
 
         if (iframe.style.height === '100%') {
@@ -3418,19 +3426,19 @@ window.addEventListener('DOMContentLoaded', function() {
                 // iframe読み込み完了後に翻訳方法を確実に送信
                 setTimeout(() => {
                     updateTranslationMethodInIframe();
-                    console.log('iframe読み込み完了後に翻訳方法を送信');
+                    console.log('Enviando método de traducción después de cargar iframe');
                     
                     // Chrome翻訳が選択されている場合、タイマー開始を確認
                     const chromeRadio = document.getElementById('translationMethodChrome');
                     if (chromeRadio && chromeRadio.checked) {
-                        console.log('Chrome翻訳選択確認 - タイマー開始確認');
+                        console.log('Confirmando selección de traducción Chrome - Verificando inicio del temporizador');
                         setTimeout(() => {
                             updateTranslationMethodInIframe('chrome');
                         }, 1000);
                     }
                 }, 500);
             } catch (e) {
-                console.error('iframeへのアクセスに失敗:', e);
+                console.error('Error al acceder al iframe:', e);
             }
         });
         
@@ -3439,43 +3447,43 @@ window.addEventListener('DOMContentLoaded', function() {
     });
 </script>
 
-<!-- # プリセット初期化（最終実行） ###################### -->
+<!-- # Preajustes初期化（最終実行） ###################### -->
 <script>
-    // ページ完全読み込み後にプリセット初期化を実行
+    // ページ完全読み込み後にPreajustes初期化を実行
     window.addEventListener('load', function() {
-        console.log('ページ完全読み込み完了 - プリセット初期化実行');
+        console.log('Carga completa de página - Ejecutando inicialización de preajustes');
         
         // 少し遅延して確実に実行
         setTimeout(function() {
-            console.log('プリセット初期化開始');
+            console.log('Iniciando inicialización de preajustes');
             
             const presetSelect = document.getElementById('presetSelect');
             if (!presetSelect) {
-                console.error('プリセットセレクトボックスが見つかりません');
+                console.error('Cuadro de selección de preajustes no encontrado');
                 return;
             }
             
-            // localStorageから保存されたプリセット選択状態を復元
+            // localStorageから保存されたPreajustes選択状態を復元
             const savedSelectedPreset = localStorage.getItem('selectedPreset');
-            console.log('保存されたプリセット選択状態:', savedSelectedPreset);
+            console.log('Estado de selección de preajuste guardado:', savedSelectedPreset);
             
             if (savedSelectedPreset) {
-                console.log('保存されたプリセットを復元:', savedSelectedPreset);
+                console.log('Restaurando preajuste guardado:', savedSelectedPreset);
                 presetSelect.value = savedSelectedPreset;
                 
                 // プルダウンの値が正しく設定されたか確認
                 if (presetSelect.value === savedSelectedPreset) {
-                    console.log('プルダウン復元成功:', savedSelectedPreset);
-                    // プリセットを実際に読み込む
+                    console.log('Restauración del menú desplegable exitosa:', savedSelectedPreset);
+                    // Preajustesを実際に読み込む
                     const event = new Event('change');
                     presetSelect.dispatchEvent(event);
                 } else {
-                    console.error('プルダウン復元失敗:', savedSelectedPreset, '現在値:', presetSelect.value);
+                    console.error('Error en restauración del menú desplegable:', savedSelectedPreset, 'Valor actual:', presetSelect.value);
                 }
             } else {
-                console.log('保存されたプリセットなし、デフォルト値を使用');
+                console.log('Sin preajuste guardado, usando valor por defecto');
                 presetSelect.value = 'default';
-                // デフォルトプリセットを読み込む
+                // デフォルトPreajustesを読み込む
                 const event = new Event('change');
                 presetSelect.dispatchEvent(event);
             }
@@ -3487,7 +3495,7 @@ window.addEventListener('DOMContentLoaded', function() {
         // セキュリティのため、信頼できるソースからのメッセージのみ処理
         if (event.data && event.data.type === 'modelDownloadRequired') {
             // 音声認識後の翻訳でモデルダウンロードが必要な場合
-            console.log('音声認識後の翻訳でモデルダウンロードが必要:', event.data);
+            console.log('Se requiere descarga de modelo para traducción después del reconocimiento de voz:', event.data);
             
             // 既にpendingModelsに含まれているか確認
             const exists = pendingModels.some(m => 
@@ -3503,32 +3511,32 @@ window.addEventListener('DOMContentLoaded', function() {
                     translationNum: event.data.translationNum
                 });
                 
-                // ダウンロードボタンを表示
+                // ダウンロードボタンをMostrar
                 const modelArea = document.getElementById('modelDownloadArea');
                 const btn = document.getElementById('preloadModelBtn');
                 
                 if (modelArea && btn) {
-                    // 最初のモデル情報を表示
+                    // 最初のモデル情報をMostrar
                     const firstModel = pendingModels[0];
                     const sourceDisplayName = getLanguageDisplayName(firstModel.sourceLang);
                     const targetDisplayName = getLanguageDisplayName(firstModel.targetLang);
                     
-                    btn.textContent = `📥 ${sourceDisplayName}→${targetDisplayName}のモデルをダウンロード`;
+                    btn.textContent = `📥 Descargar modelo ${sourceDisplayName}→${targetDisplayName}`;
                     btn.disabled = false;
                     btn.style.backgroundColor = '#4CAF50';
                     btn.style.color = 'white';
                     
                     modelArea.style.display = 'block';
                     
-                    // ダウンロード状況も表示
+                    // ダウンロード状況もMostrar
                     const statusArea = document.getElementById('downloadStatusArea');
                     const statusText = document.getElementById('downloadStatusText');
                     if (statusArea && statusText) {
-                        statusText.innerHTML = `⚠️ 音声認識後の翻訳にモデルが必要です`;
+                        statusText.innerHTML = `⚠️ Se requiere modelo para traducción después del reconocimiento de voz`;
                         statusArea.style.display = 'block';
                         statusArea.style.background = 'linear-gradient(135deg, #fff3cd 0%, #ffe8a1 100%)';
                         
-                        // 5秒後に非表示
+                        // 5秒後に非Mostrar
                         setTimeout(() => {
                             statusArea.style.display = 'none';
                         }, 5000);
@@ -3543,7 +3551,7 @@ window.addEventListener('DOMContentLoaded', function() {
             
             if (statusArea && statusText) {
                 if (event.data.status === 'downloading') {
-                    // 進捗率がある場合は表示
+                    // 進捗率がある場合はMostrar
                     const progressText = event.data.progress !== undefined 
                         ? `🔄 ${event.data.message}` 
                         : '🔄 ' + event.data.message;
@@ -3562,7 +3570,7 @@ window.addEventListener('DOMContentLoaded', function() {
                     statusText.innerHTML = '✅ ' + event.data.message;
                     statusArea.style.display = 'block';
                     statusArea.style.background = 'linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%)';
-                    // 3秒後に非表示
+                    // 3秒後に非Mostrar
                     setTimeout(() => {
                         statusArea.style.display = 'none';
                     }, 3000);
@@ -3570,7 +3578,7 @@ window.addEventListener('DOMContentLoaded', function() {
                     statusText.innerHTML = '❌ ' + event.data.message;
                     statusArea.style.display = 'block';
                     statusArea.style.background = 'linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%)';
-                    // 5秒後に非表示
+                    // 5秒後に非Mostrar
                     setTimeout(() => {
                         statusArea.style.display = 'none';
                     }, 5000);
@@ -3583,13 +3591,13 @@ window.addEventListener('DOMContentLoaded', function() {
     let currentTranslationPair = null; // 現在選択されている言語ペア
     let pendingModels = []; // ダウンロード待ちのモデルリスト
     
-    // ダウンロード待ちモデル数の表示を更新
+    // ダウンロード待ちモデル数のMostrarを更新
     function updateQueueStatus() {
         const queueStatus = document.getElementById('modelQueueStatus');
         if (queueStatus) {
             if (pendingModels.length > 0) {
                 queueStatus.style.display = 'inline-block';
-                queueStatus.textContent = `📦 残り${pendingModels.length}個`;
+                queueStatus.textContent = `📦 Restantes: ${pendingModels.length}`;
                 
                 // 個数によって色を変える
                 if (pendingModels.length === 1) {
@@ -3630,17 +3638,17 @@ window.addEventListener('DOMContentLoaded', function() {
         try {
             checkTranslationModel(1);
         } catch (error) {
-            console.error('翻訳1モデルチェックエラー:', error);
+            console.error('Error al verificar modelo de traducción 1:', error);
         }
         try {
             checkTranslationModel(2);
         } catch (error) {
-            console.error('翻訳2モデルチェックエラー:', error);
+            console.error('Error al verificar modelo de traducción 2:', error);
         }
         try {
             checkTranslationModel(3);
         } catch (error) {
-            console.error('翻訳3モデルチェックエラー:', error);
+            console.error('Error al verificar modelo de traducción 3:', error);
         }
     }
     
@@ -3677,7 +3685,7 @@ window.addEventListener('DOMContentLoaded', function() {
         // iframe内のchromeTranslatorを取得
         const iframe = document.getElementById('asr_frame');
         if (!iframe || !iframe.contentWindow || !iframe.contentWindow.chromeTranslator) {
-            console.log('Chrome Translator が準備されていません');
+            console.log('Chrome Translator no preparado');
             return;
         }
         
@@ -3702,18 +3710,18 @@ window.addEventListener('DOMContentLoaded', function() {
             sourceLanguage: normalizedSource,
             targetLanguage: normalizedTarget
         }).then(availability => {
-            console.log(`翻訳${transNum} モデル状態: ${sourceLang} → ${targetLang} = ${availability}`);
+            console.log(`Estado del modelo de traducción ${transNum}: ${sourceLang} → ${targetLang} = ${availability}`);
             
             if (availability === 'downloadable') {
                 // ダウンロード可能な場合
-                console.log(`翻訳${transNum}用モデルをダウンロード可能: ${targetLangName}`);
+                console.log(`Modelo para traducción ${transNum} descargable: ${targetLangName}`);
                 
                 // イベントが渡されていれば（翻訳言語プルダウン変更時）自動ダウンロード
                 const isDirectUserGesture = event && (event.type === 'change');
                 
                 if (isDirectUserGesture) {
                     // 翻訳言語プルダウン変更による直接的なユーザージェスチャー
-                    console.log(`翻訳${transNum}用モデルを自動ダウンロード開始（プルダウン変更）: ${targetLangName}`);
+                    console.log(`Iniciando descarga automática de modelo para traducción ${transNum} (cambio en menú desplegable): ${targetLangName}`);
                     
                     // pendingModelsから該当するモデルを削除
                     pendingModels = pendingModels.filter(m => 
@@ -3723,19 +3731,19 @@ window.addEventListener('DOMContentLoaded', function() {
                     updateQueueStatus();
                     
                     translator.preloadLanguagePack(normalizedSource, normalizedTarget).then(() => {
-                        console.log(`翻訳${transNum}用モデルのダウンロード完了: ${targetLangName}`);
+                        console.log(`Descarga de modelo para traducción ${transNum} completada: ${targetLangName}`);
                         
                         // pendingModelsに残りがあるか確認
                         if (pendingModels.length > 0) {
-                            // 残りがある場合は次のモデルのボタンを表示
+                            // 残りがある場合は次のモデルのボタンをMostrar
                             const nextModel = pendingModels[0];
                             if (modelArea && modelBtn) {
                                 modelArea.style.display = 'block';
                                 modelBtn.style.display = 'inline-block';
                                 modelBtn.disabled = false;
                                 modelBtn.style.background = '#ff6b6b';
-                                modelBtn.innerHTML = `📥 ${nextModel.langName}モデルをダウンロード`;
-                                modelStatus.textContent = `✅ ${targetLangName}完了！`;
+                                modelBtn.innerHTML = `📥 Descargar modelo ${nextModel.langName}`;
+                                modelStatus.textContent = `✅ ${targetLangName}¡completado!`;
                                 modelStatus.style.color = '#4CAF50';
                                 
                                 // currentTranslationPairを更新
@@ -3747,28 +3755,28 @@ window.addEventListener('DOMContentLoaded', function() {
                                 };
                             }
                         } else {
-                            // 全て完了した場合のみボタンエリアを非表示に
+                            // 全て完了した場合のみボタンエリアを非Mostrarに
                             if (transNum === 1 && modelArea) {
                                 modelArea.style.display = 'none';
                             }
                         }
                     }).catch(error => {
-                        console.error(`翻訳${transNum}用モデルのダウンロードエラー:`, error);
+                        console.error(`Error al descargar modelo para traducción ${transNum}:`, error);
                         
-                        // エラー時は翻訳1の場合のみボタンを表示
+                        // エラー時は翻訳1の場合のみボタンをMostrar
                         if (transNum === 1 && modelArea) {
                             modelArea.style.display = 'block';
                             modelBtn.style.display = 'inline-block';
                             modelBtn.disabled = false;
                             modelBtn.style.background = '#ff6b6b';
-                            modelBtn.innerHTML = `📥 ${targetLangName}モデルをダウンロード`;
-                            modelStatus.textContent = 'エラー: 手動でダウンロードしてください';
+                            modelBtn.innerHTML = `📥 Descargar modelo ${targetLangName}`;
+                            modelStatus.textContent = 'Error: Descarga manualmente por favor';
                             modelStatus.style.color = '#f44336';
                         }
                     });
                 } else {
                     // 音声認識言語変更による間接的な呼び出し
-                    console.log(`翻訳${transNum}用モデルは手動ダウンロードが必要（音声認識言語変更）: ${targetLangName}`);
+                    console.log(`Modelo para traducción ${transNum} requiere descarga manual (cambio de idioma de reconocimiento de voz): ${targetLangName}`);
                     
                     // 重複を避けてダウンロード待ちリストに追加
                     const exists = pendingModels.some(m => 
@@ -3786,15 +3794,15 @@ window.addEventListener('DOMContentLoaded', function() {
                         updateQueueStatus(); // キュー状態を更新
                     }
                     
-                    // pendingModelsに何かある場合は最初のモデルのボタンを表示
+                    // pendingModelsに何かある場合は最初のモデルのボタンをMostrar
                     if (pendingModels.length > 0 && modelArea && modelBtn) {
                         const firstModel = pendingModels[0];
                         modelArea.style.display = 'block';
                         modelBtn.style.display = 'inline-block';
                         modelBtn.disabled = false; // ボタンを有効化
                         modelBtn.style.background = '#ff6b6b'; // 背景色をリセット（赤）
-                        modelBtn.innerHTML = `📥 ${firstModel.langName}モデルをダウンロード`;
-                        modelStatus.textContent = '音声認識言語変更後は手動ダウンロードが必要です';
+                        modelBtn.innerHTML = `📥 Descargar modelo ${firstModel.langName}`;
+                        modelStatus.textContent = 'Se requiere descarga manual después de cambiar el idioma de reconocimiento de voz';
                         modelStatus.style.color = '#333'; // テキスト色もリセット
                         
                         // ボタンのクリックで最初のモデルをダウンロード
@@ -3805,27 +3813,27 @@ window.addEventListener('DOMContentLoaded', function() {
                             normalizedTarget: normalizedTarget
                         };
                     } else if (pendingModels.length > 1 && transNum === 1 && modelArea) {
-                        // 複数のモデルが待機中の場合は案内を表示
-                        modelStatus.textContent = `他に${pendingModels.length - 1}個のモデルがダウンロード待機中`;
+                        // 複数のモデルが待機中の場合は案内をMostrar
+                        modelStatus.textContent = `Otros ${pendingModels.length - 1} modelos esperando descarga`;
                     }
                 }
             } else if (availability === 'available') {
                 // 既にダウンロード済み
-                console.log(`翻訳${transNum}用モデルは既にダウンロード済み: ${targetLangName}`);
-                // すべてのモデルがダウンロード済みでpendingModelsが空の場合のみボタンエリアを非表示
+                console.log(`Modelo para traducción ${transNum} ya descargado: ${targetLangName}`);
+                // すべてのモデルがダウンロード済みでpendingModelsが空の場合のみボタンエリアを非Mostrar
                 if (pendingModels.length === 0 && modelArea) {
                     modelArea.style.display = 'none';
                 }
             } else {
                 // 利用不可
-                console.log(`翻訳${transNum}用モデルは利用不可: ${targetLangName} (${availability})`);
-                // すべてのモデルが利用不可でpendingModelsが空の場合のみボタンエリアを非表示
+                console.log(`Modelo para traducción ${transNum} no disponible: ${targetLangName} (${availability})`);
+                // すべてのモデルが利用不可でpendingModelsが空の場合のみボタンエリアを非Mostrar
                 if (pendingModels.length === 0 && modelArea) {
                     modelArea.style.display = 'none';
                 }
             }
         }).catch(error => {
-            console.error('翻訳可能性チェックエラー:', error);
+            console.error('Error al verificar disponibilidad de traducción:', error);
         });
     }
     
@@ -3839,7 +3847,7 @@ window.addEventListener('DOMContentLoaded', function() {
             modelToDownload = {
                 sourceLang: currentTranslationPair.normalizedSource,
                 targetLang: currentTranslationPair.normalizedTarget,
-                langName: currentTranslationPair.targetLangName || '翻訳言語'
+                langName: currentTranslationPair.targetLangName || 'Idioma de traducción'
             };
         }
         
@@ -3851,7 +3859,7 @@ window.addEventListener('DOMContentLoaded', function() {
         // iframe内のchromeTranslatorを取得
         const iframe = document.getElementById('asr_frame');
         if (!iframe || !iframe.contentWindow || !iframe.contentWindow.chromeTranslator) {
-            alert('Chrome Translator が準備されていません。ページをリロードしてください。');
+            alert('Chrome Translator no preparado. Por favor, recarga la página.');
             return;
         }
         
@@ -3862,14 +3870,14 @@ window.addEventListener('DOMContentLoaded', function() {
         
         // ボタンを無効化
         modelBtn.disabled = true;
-        modelBtn.innerHTML = `📥 ${targetLangName}をダウンロード準備中...`;
+        modelBtn.innerHTML = `📥 Preparando descarga de ${targetLangName}...`;
         modelStatus.textContent = '';
         
         // ダウンロード進捗を監視
         translator.onDownloadStatusChange = (status) => {
             if (status.status === 'downloading' && status.progress !== undefined) {
-                modelBtn.innerHTML = `⏳ ${targetLangName}をダウンロード中... ${status.progress}%`;
-                // プログレスバー表示（ボタンの背景として）
+                modelBtn.innerHTML = `⏳ Descargando ${targetLangName}... ${status.progress}%`;
+                // プログレスバーMostrar（ボタンの背景として）
                 modelBtn.style.background = `linear-gradient(90deg, #4CAF50 ${status.progress}%, #ff6b6b ${status.progress}%)`;
             }
         };
@@ -3891,8 +3899,8 @@ window.addEventListener('DOMContentLoaded', function() {
                     const nextModel = pendingModels[0];
                     modelBtn.disabled = false;
                     modelBtn.style.background = '#ff6b6b';
-                    modelBtn.innerHTML = `📥 ${nextModel.langName}モデルをダウンロード`;
-                    modelStatus.textContent = `✅ ${targetLangName}完了！`;
+                    modelBtn.innerHTML = `📥 Descargar modelo ${nextModel.langName}`;
+                    modelStatus.textContent = `✅ ${targetLangName}¡completado!`;
                     modelStatus.style.color = '#4CAF50';
                     
                     // 次のモデル用にcurrentTranslationPairを更新
@@ -3904,7 +3912,7 @@ window.addEventListener('DOMContentLoaded', function() {
                 } else {
                     // 全て完了
                     modelBtn.style.display = 'none';
-                    modelStatus.textContent = '✅ 全モデルのダウンロード完了！';
+                    modelStatus.textContent = '✅ ¡Descarga de todos los modelos completada!';
                     modelStatus.style.color = '#4CAF50';
                     setTimeout(() => {
                         const modelArea = document.getElementById('modelDownloadArea');
@@ -3915,16 +3923,16 @@ window.addEventListener('DOMContentLoaded', function() {
             } else {
                 modelBtn.disabled = false;
                 modelBtn.style.background = '#ff6b6b';
-                modelBtn.innerHTML = `📥 ${targetLangName}モデルをダウンロード`;
-                modelStatus.textContent = '❌ ダウンロード失敗';
+                modelBtn.innerHTML = `📥 Descargar modelo ${targetLangName}`;
+                modelStatus.textContent = '❌ Error en la descarga';
                 modelStatus.style.color = '#f44336';
             }
         }).catch(error => {
-            console.error('事前ダウンロードエラー:', error);
+            console.error('Error en precarga:', error);
             modelBtn.disabled = false;
             modelBtn.style.background = '#ff6b6b';
-            modelBtn.innerHTML = `📥 ${targetLangName}モデルをダウンロード`;
-            modelStatus.textContent = '❌ エラー: ' + error.message;
+            modelBtn.innerHTML = `📥 Descargar modelo ${targetLangName}`;
+            modelStatus.textContent = '❌ Error: ' + error.message;
             modelStatus.style.color = '#f44336';
         });
     }
